@@ -85,6 +85,10 @@ module.exports.viewCart = function(req,res){
   });
 };
 
+module.exports.checkout =  function (req,res){
+// sprint 2 be3oon ellah
+}
+
 var getCartDetails =function (req,res,callback){
   var requestOptions;
   var total = 0;
