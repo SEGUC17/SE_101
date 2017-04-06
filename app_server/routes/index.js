@@ -28,7 +28,7 @@ router.post('/addSponserAd',upload.single('img'),ctrlAdmin.addSponserAd);
 router.get('/products',ctrlProduct.getProducts);
 router.put('/products',ctrlProduct.addProduct);
 router.get('/products/cart',ctrlProduct.viewCart);
-router.delete('/products/cart',ctrlProduct.removeFromCart);
+router.put('/products/cart',ctrlProduct.removeFromCart);
 
 
 module.exports =router;
