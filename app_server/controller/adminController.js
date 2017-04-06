@@ -96,5 +96,28 @@ module.exports.addSponserAd=function(req,res){
 
 
 module.exports.editProduct = function(req, res){
-	
-};
+	User.findById(req.payload._id).exec(function(err,user){
+		if(err) throw err;
+		if(!user.admin){
+			console.log('cannot access');
+		}else{
+			Plan.findById(req.params.product_id, function(err,product){
+				if(err) throw err;
+				if(req.params.productName!=null)
+					product.name = req.params.productName;
+				if(req.params.productPrice!=null)
+					product.price = req.params.productPrice;
+				if(req.params.productDetails!=null)
+					product.details = req.params.productDetails;
+					product.save(function(err){
+		        if(err) throw err;
+		        console.log("Product edited");
+		        res.status(200).json(updatedUser);
+		      });
+			});
+
+			}
+		});
+
+	};
+
