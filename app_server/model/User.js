@@ -19,7 +19,7 @@ UserSchema.methods.generateJwt=function() {
     _id: this._id,
     username: this.username,
     exp: parseInt(expiry.getTime() / 1000),
-  },"secret",
+  },"secret"
 );
 };
 
