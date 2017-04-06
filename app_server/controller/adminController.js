@@ -112,7 +112,7 @@ module.exports.editProduct = function(req, res){
 					product.save(function(err){
 		        if(err) throw err;
 		        console.log("Product edited");
-		        res.status(200).json(updatedUser);
+		        res.status(200).json(updatedProduct);
 		      });
 			});
 
