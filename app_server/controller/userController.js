@@ -23,6 +23,7 @@ module.exports.selectPlan=function(req,res){
 
   })
 }
+
 module.exports.viewHistory = function(req,res){
   UserindById(req.payload._id).exec(function(err,user){
     if(err){
