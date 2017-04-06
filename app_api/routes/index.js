@@ -14,7 +14,8 @@ var auth = jwt({
 var ctrlAuth = require('../controller/authentication');
 var ctrlProfile=requmodule.exports = router;ire('../controller/profileController');
 var ctrlUser=require('../controller/userController');
-var ctrlAdmin=require('../controller/adminController')
+var ctrlAdmin=require('../controller/adminController');
+var ctrlProduct=require('/controller/productController');
 // authentication
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
@@ -24,4 +25,8 @@ router.get('/selectPlan/:plan_id',ctrlUser.selectPlan);
 router.post('/addPlan',ctrlAdmin.addPlan);
 router.post('/addProduct',ctrlAdmin.addProduct);
 router.post('/addSponserAd',upload.single('img'),ctrlAdmin.addSponserAd);
+router.put('/products',ctrlProduct.addProduct);
+router.get('/products',ctrlProduct.getProducts);
 
+
+module.exports =router;
