@@ -8,7 +8,7 @@ var flash   = require('connect-flash');
 var session=require('express-session');
 
 var mongoose=require('mongoose');
-var index = require('./app_api/routes/index');
+var index = require('./app_server/routes/index');
 var users = require('./routes/users');
 
 
