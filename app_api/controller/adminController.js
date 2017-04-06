@@ -31,5 +31,26 @@ module.exports.deleteUser=function(req,res){
 	});
 
 };
+module.exports.addPlan=function(req,res){
+	User.findById(req.payload._id).exec(function(err,user){
+		if(!user.admin){
+			console.log('cannot access');
+		}else{
+			var pl=new plan({
+				name:req.body.name,
+				details:req.body.details
+			});
+			pl.save(function(err){
+				if(err){
+					throw err
+				};
+				console.log('plan added');
+			});
+		}
+		}
+	});
+
+
+
 
 
