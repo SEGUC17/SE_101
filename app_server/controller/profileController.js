@@ -15,7 +15,6 @@ module.exports.viewProfile=function(req,res){
 
     }
 
-
 };
 module.exports.editProfile=function(req,res){
     if(!req.payload._id){
