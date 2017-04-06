@@ -9,8 +9,6 @@ var sendJSONresponse = function(res, status, content) {
 
 module.exports.register = function(req, res) {
 
-
-
   var user = new User();
 
   user.username = req.body.username;
