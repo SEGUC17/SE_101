@@ -5,7 +5,7 @@ var pl = require('mongoose').model(planschema);
 
 var profileSchema = new mongoose.Schema({
 name : String
-products : [pr],
+products : [pr], //this is the bought history not the cart
 plan : pl
 });
 
