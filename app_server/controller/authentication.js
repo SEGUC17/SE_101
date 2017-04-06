@@ -25,8 +25,36 @@ module.exports.register = function(req, res) {
   });
 
 };
-
 module.exports.login = function(req, res) {
+  console.log(req.body);
+  User.find({},function(err,doc){
+    console.log(doc);
+  })
+ 
+if(!req.body.username || !req.body.password) {
+sendJSONresponse(res, 400, {
+"message": "All fields required"
+});
+return;
+}
+User.find({},function(err,doc){
+    console.log(doc);
+    for(var i=0;i<doc.length;i++){
+        if(doc[i].username==req.body.username && doc[i].password==req.body.password){
+          var token;
+          token = doc[i].generateJwt();
+          sendJSONresponse(res, 200, {"token" : token});
+
+        }
+        
+
+      };
+  });
+
+};
+
+//passport authentication
+/*module.exports.login = function(req, res) {
 
 
   passport.authenticate('local', function(err, user, info){
@@ -51,4 +79,4 @@ module.exports.login = function(req, res) {
     }
   })
 
-};
+};*/
