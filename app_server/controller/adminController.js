@@ -95,4 +95,6 @@ module.exports.addSponserAd=function(req,res){
 };
 
 
-
+module.exports.editProduct = function(req, res){
+	
+};
