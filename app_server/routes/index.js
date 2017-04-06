@@ -32,5 +32,7 @@ router.get('/products/cart',ctrlProduct.viewCart);
 router.put('/products/cart',ctrlProduct.removeFromCart);
 router.all('/products/invoice', ctrlProduct.checkout);
 router.get('profile/viewHistory', ctrlUser.viewHistory);
+router.get('/products',ctrlUser.viewProducts);
+router.get('/plans',ctrlUser.viewPlan);
 
 module.exports =router;
