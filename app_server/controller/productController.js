@@ -15,6 +15,7 @@ var products;
     sendJSONresponse(res, 200, products);
   }
 
+  
 };
 var buildProductList(req,res,results){
   var products = [];
