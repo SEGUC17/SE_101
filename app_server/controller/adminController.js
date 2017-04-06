@@ -101,7 +101,7 @@ module.exports.editProduct = function(req, res){
 		if(!user.admin){
 			console.log('cannot access');
 		}else{
-			Plan.findById(req.params.product_id, function(err,product){
+			Product.findById(req.params.product_id, function(err,product){
 				if(err) throw err;
 				if(req.params.productName!=null)
 					product.name = req.params.productName;
