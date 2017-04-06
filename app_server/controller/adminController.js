@@ -16,7 +16,6 @@ module.exports.viewUsers=function(req,res){
     }
     console.log(doc);
 	});
-
 };
 
 module.exports.deleteUser=function(req,res){
@@ -27,9 +26,7 @@ module.exports.deleteUser=function(req,res){
 			};
 			console.log('User successfully deleted!');
 		});
-
 	});
-
 };
 module.exports.addPlan=function(req,res){
 	User.findById(req.payload._id).exec(function(err,user){
@@ -50,7 +47,7 @@ module.exports.addPlan=function(req,res){
 		}
 	});
 	
-	
+
 	module.exports.addProduct=function(req,res){
 		User.findById(req.payload._id).exec(function(err,user){
 			if(!user.admin){
