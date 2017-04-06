@@ -49,6 +49,27 @@ module.exports.addPlan=function(req,res){
 		}
 		}
 	});
+	
+	
+	module.exports.addProduct=function(req,res){
+		User.findById(req.payload._id).exec(function(err,user){
+			if(!user.admin){
+				console.log('cannot access');
+			}else{
+				var pr=new product({
+					name:req.body.name,
+					details:req.body.details,
+					price:req.body.price
+				});
+				pr.save(function(err){
+					if(err){
+						throw err
+					};
+					console.log('product added');
+				});
+			}
+			}
+		});
 
 module.exports.addSponserAd=function(req,res){
 	User.findById(req.payload._id).exec(function(err,user){
