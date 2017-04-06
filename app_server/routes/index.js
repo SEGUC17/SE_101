@@ -31,6 +31,6 @@ router.put('/products',ctrlProduct.addProduct);
 router.get('/products/cart',ctrlProduct.viewCart);
 router.put('/products/cart',ctrlProduct.removeFromCart);
 router.all('/products/invoice', ctrlProduct.checkout);
-
+router.get('profile/viewHistory', ctrlUser.viewHistory);
 
 module.exports =router;
