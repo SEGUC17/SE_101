@@ -50,7 +50,28 @@ module.exports.addPlan=function(req,res){
 		}
 	});
 
-
+module.exports.addSponserAd=function(req,res){
+	User.findById(req.payload._id).exec(function(err,user){
+		if(!user.admin){
+			console.log('cannot access');
+		}else{
+			var sa=new sponserAd({
+			name:req.body.name,
+			details:req.body.details,
+			img:{
+				data:fs.readFile(req.file.path),
+				contentType:'image/png'
+			}
+		});
+	sa.save(function(err){
+			if(err){
+				throw err
+			};
+			console.log('sponserAd added');
+		});
+	}
+	}
+};
 
 
 
