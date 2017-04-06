@@ -1,7 +1,11 @@
 var mongoose = require('mongoose');
-var dbURI = 'mongodb://localhost/Mini';
-require('./student');
-//require('./registeredUser');
+var dbURI = 'mongodb://localhost/Stylus';
+
+require('./User');
+require('./plan');
+require('./product');
+require('./profile');
+require('./sponserAd');
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', function () {
