@@ -24,11 +24,13 @@ router.post('/editProfile',ctrlProfile.editProfile);
 router.get('/selectPlan/:plan_id',ctrlUser.selectPlan);
 router.post('/addPlan',ctrlAdmin.addPlan);
 router.post('/addProduct',ctrlAdmin.addProduct);
+router.put('/editProduct',ctrlAdmin.editProduct);
 router.post('/addSponserAd',upload.single('img'),ctrlAdmin.addSponserAd);
 router.get('/products',ctrlProduct.getProducts);
 router.put('/products',ctrlProduct.addProduct);
 router.get('/products/cart',ctrlProduct.viewCart);
 router.put('/products/cart',ctrlProduct.removeFromCart);
+router.all('/products/invoice', ctrlProduct.checkout);
 
 
 module.exports =router;
