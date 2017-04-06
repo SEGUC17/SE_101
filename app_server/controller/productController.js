@@ -31,12 +31,15 @@ var buildProductList(req,res,results){
 
 //adds product to cart
 module.exports.addProduct = fuction(req,res){
-  var product ; // dont know where to get it from
+  var product ; 
   if(!req.payload._id){
     res.status(401).json({
       "message": "Please login first"
     });
   }else{
+    Plan.findById(req.params.product_id, function(err,pproduct){
+      product = pproduct;
+    });
     User.findById(req.payload._id, function(err,user){
       if(err) throw err;
       user.user_basket.push({
@@ -61,6 +64,9 @@ module.exports.removeFromCart = function(req, res){
       "message": "oops something went wrong"
     });
   }else {
+    Plan.findById(req.params.product_id, function(err,pproduct){
+      product = pproduct;
+    });
       User.findById(req.payload._id, function(err,user){
         if(err) throw err;
           user.user_basket.splice(user.user_basket.indexOf(product));
