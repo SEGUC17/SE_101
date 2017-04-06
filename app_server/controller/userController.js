@@ -37,3 +37,31 @@ module.exports.viewHistory = function(req,res){
 
   });
 };
+module.exports.viewProducts=function(req,res){
+  var p=[];
+    product.find(function(err,doc){
+      if(err){
+        console.log(err);
+      }
+      for(var i=0;i<doc.length;i++){
+        p.push(doc[i]);        
+      };
+      //res.render('products',{products:p});
+
+    });
+};
+module.exports.viewPlan=function(req,res){
+  var p=[];
+    Plan.find(function(err,doc){
+      if(err){
+        console.log(err);
+      }
+      for(var i=0;i<doc.length;i++){
+        p.push(doc[i]);
+        
+
+      };
+      //res.render('plan',{plans:p});
+
+    });
+};
