@@ -25,7 +25,7 @@ module.exports.selectPlan=function(req,res){
 }
 
 module.exports.viewHistory = function(req,res){
-  UserindById(req.payload._id).exec(function(err,user){
+  UserfindById(req.payload._id).exec(function(err,user){
     if(err){
       console.log("oops something went wrong");
       sendJSONresponse(res,404,err); //not sure
