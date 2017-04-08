@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema=mongoose.Schema;
 var jwt = require('jsonwebtoken');
 var pr = require('mongoose').model(productSchema);
 var pl = require('mongoose').model(planSchema);
