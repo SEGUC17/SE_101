@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var Plan=mongoose.model('plan')
+var Plan=mongoose.model('Plan')
 module.exports.selectPlan=function(req,res){
 
   User.findById(req.payload._id).exec(function(err,user){
@@ -39,7 +39,7 @@ module.exports.viewHistory = function(req,res){
 };
 module.exports.viewProducts=function(req,res){
   var p=[];
-    product.find(function(err,doc){
+    Product.find(function(err,doc){
       if(err){
         console.log(err);
       }
