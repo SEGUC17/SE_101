@@ -1,12 +1,19 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+
 
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
 };
-
+module.exports={
+  User:require('../model/User'),
+  Profile:require('../model/profile'),
+  Product:require('../model/product'),
+  Plan:require('../model/plan'),
+  
+};
+var User = mongoose.model('User');
 module.exports.register = function(req, res) {
 
   var user = new User();
