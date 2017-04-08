@@ -1,8 +1,8 @@
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User=mongoose.model('User');
+var plan=mongoose.model('Plan');
 var sponserAd=mongoose.model('sponserAd');
-var plan=mongoose.model('plan');
 var multiparty=require('multiparty');
 var multer=require('multer');
 var upload=multer({dest:'uploads/'});
@@ -45,7 +45,7 @@ module.exports.addPlan=function(req,res){
 			});
 		}
 		}
-	});
+	)};
 	
 
 	module.exports.addProduct=function(req,res){
@@ -66,7 +66,7 @@ module.exports.addPlan=function(req,res){
 				});
 			}
 			}
-		});
+		)};
 
 module.exports.addSponserAd=function(req,res){
 	User.findById(req.payload._id).exec(function(err,user){
@@ -89,7 +89,7 @@ module.exports.addSponserAd=function(req,res){
 		});
 	}
 	}
-};
+	)};
 
 
 module.exports.editProduct = function(req, res){
