@@ -2,14 +2,13 @@ var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 var pr = require('mongoose').model(profileSchema);
 var prod = require('mongoose').model(productSchema);
-
 var UserSchema = new mongoose.Schema({
 username : {type:String, required:true,unique:true},
 password : {type:String, required:true},
-user_basket : [prod], //only products the user has selected but hasnt bought yet are in this list
+user_basket : [{type: Schema.Types.ObjectId, ref: 'Product'}], //only products the user has selected but hasnt bought yet are in this list
 user_history : [String],
-profile : pr, // the plan is in the profile 
-admin:{type:boolean}
+profile : {type: Schema.Types.ObjectId, ref: 'Profile'}, // the plan is in the profile 
+admin:{type:Boolean}
 } );
 UserSchema.methods.generateJwt=function() {
   var expiry = new Date();
@@ -22,5 +21,7 @@ UserSchema.methods.generateJwt=function() {
   },"secret"
 );
 };
+
+
 
 mongoose.model('User' , UserSchema);
