@@ -6,4 +6,4 @@ name : String,
 details : String
 });
 
-mongoose.model('Plan' , planSchema);
+mongoose.model('Plan' , planSchema, 'Plans');
