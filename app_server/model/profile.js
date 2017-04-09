@@ -10,4 +10,4 @@ products : [{type: Schema.Types.ObjectId, ref: 'Product'}], //this is the bought
 plan:{type: Schema.Types.ObjectId, ref: 'Plan'}  
 });
 
-mongoose.model('Profile' , profileSchema);
+mongoose.model('Profile' , profileSchema, 'Profiles');
