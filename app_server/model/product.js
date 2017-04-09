@@ -7,4 +7,4 @@ price : Double,
 details: String
 });
 
-mongoose.model('Product' , productSchema);
+mongoose.model('Product' , productSchema, 'Products');
