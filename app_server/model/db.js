@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
-var dbURI = 'mongodb://localhost/Stylus';
+var dbURI = 'mongodb://localhost/Fitness';
 
 require('./User');
 require('./plan');
 require('./product');
 require('./profile');
 require('./sponserAd');
+
 mongoose.connect(dbURI);
 
 mongoose.connection.on('connected', function () {
