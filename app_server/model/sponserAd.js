@@ -7,4 +7,4 @@ details : String
 image:{data:Buffer,contentType:String}
 });
 
-mongoose.model('sponserAd' , sponserAdSchema);
+mongoose.model('sponserAd' , sponserAdSchema, 'SponserAds');
