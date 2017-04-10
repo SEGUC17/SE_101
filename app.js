@@ -52,3 +52,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+app.listen(6567, function () {
+console.log("Express server listening on port 6567");
+});
