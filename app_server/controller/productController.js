@@ -17,9 +17,9 @@ var products;
 
   
 };
-var buildProductList(req,res,results){
+var buildProductList=function(req,res,results){
   var products = [];
-  results.forEach(function(doc)){
+  results.forEach(function(doc){
     products.push({
       name: doc.obj.name,
       price: doc.obj.price,
@@ -31,7 +31,7 @@ var buildProductList(req,res,results){
 };
 
 //adds product to cart
-module.exports.addProduct = fuction(req,res){
+module.exports.addProduct = function(req,res){
   var product ; 
   if(!req.payload._id){
     res.status(401).json({
@@ -81,8 +81,15 @@ module.exports.removeFromCart = function(req, res){
 };
 //veiw cart to to remove or checkout
 module.exports.viewCart = function(req,res){
-  getCartDetails(req,res,responseData){
-    renderCartPage(req,res,responseData);
+  User.findById(req.payload._id,function(err,user){
+    if(err){
+      console.log('Cant Access')
+    }else{
+      var cart=[];
+      cart=user.user_basket;
+      //res.render('Cart',{cart:cart});
+    }
+
   });
 };
 
@@ -90,36 +97,28 @@ module.exports.checkout =  function (req,res){
 // sprint 2 be3oon ellah
 }
 
-var getCartDetails =function (req,res,callback){
-  var requestOptions;
-  var total = 0;
-  var products =[];
-  requestOptions = {
-    url : "../cart",
-    method : "GET",
-  };
-  request(
-    requestOptions,
-    function(err, response, body) {
-      var data = body;
-        if (response.statusCode === 200) {
-  User.findById(req.payload._id, function(err,user){
-    if(err) throw err;
-    for (var i=0; i<cartData.length;i++){
-      ttotal+=user.user_basket[i].price;
-    }
-    pproducts=user.user_basket;
-  });
-  data.info= {
-    total : ttotal,
-    products : pproducts
-    };
-    callback(req,res,data);
+module.exports.getCartDetails =function (req,res){
+  if(!req.payload._id){
+    console.log('Cant Access');
   }else{
-    showError(req, res, response.statusCode);
+    User.findById(req.payload._id,function(err,user){
+      if(err){
+        throw err;
+      }else{
+        var total=0;
+        var productNames=[String];
+        for(var i=0;i<user.user_basket[i].length;i++){
+        total=total+user.user_basket[i].price;
+        productNames.push(user.user_basket[i].name);
+        //res.render('CheckoutList',{pNames:productNames,ptotal:total});
+        
+
+      };
+      }
+    })
   }
-  );
-});
+
+  
 };
 
 
@@ -130,4 +129,3 @@ var renderCartPage = function(req,res,cartData){
 };
 
 //remove an item from the cart
-
