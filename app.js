@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var flash   = require('connect-flash');
 var session=require('express-session');
-
+var DB_URI = 'mongodb://localhost/Fitness';
 var mongoose=require('mongoose');
 var index = require('./app_server/routes/index');
 
@@ -29,6 +29,7 @@ app.use(session({ secret: 'secret' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
+mongoose.connect(DB_URI);
 app.use('/', index);
 
 
