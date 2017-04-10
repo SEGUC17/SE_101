@@ -1,5 +1,13 @@
+
+var mongoose=require('mongoose');
 var passport = require('passport');
-var mongoose = require('mongoose');
+module.exports={
+  User:require('../model/User'),
+  Profile:require('../model/profile'),
+  Product:require('../model/product'),
+  Plan:require('../model/plan'),
+  
+};
 var User = mongoose.model('User');
 
 var sendJSONresponse = function(res, status, content) {
