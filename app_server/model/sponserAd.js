@@ -3,8 +3,8 @@ var jwt = require('jsonwebtoken');
 
 var sponserAdSchema = new mongoose.Schema({
 name : String,
-details : String
+details : String,
 image:{data:Buffer,contentType:String}
 });
 
-mongoose.model('sponserAd' , sponserAdSchema, 'SponserAds');
+mongoose.model('sponserAd' , sponserAdSchema);
