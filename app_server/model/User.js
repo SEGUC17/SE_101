@@ -1,7 +1,11 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema=mongoose.Schema;
 var jwt = require('jsonwebtoken');
-var pr = require('mongoose').model(profileSchema);
-var prod = require('mongoose').model(productSchema);
+ var Profile=require('../model/profile');
+  var Product=require('../model/product');
+  var Plan=require('../model/plan');
+  var sponserAd=require('../model/sponserAd');
+  
 var UserSchema = new mongoose.Schema({
 username : {type:String, required:true,unique:true},
 password : {type:String, required:true},
@@ -24,4 +28,5 @@ UserSchema.methods.generateJwt=function() {
 
 
 
-mongoose.model('User' , UserSchema, 'Users');
+var User=mongoose.model('User' , UserSchema);
+module.exports=User;
