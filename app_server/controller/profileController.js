@@ -2,7 +2,7 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var User=mongoose.model('User');
 var profile = mongoose.model('Profile');
-var plan=mongooose.model('Plan');
+var plan=mongoose.model('Plan');
 module.exports.viewProfile=function(req,res){
     if(!req.payload._id){
         res.status(401).json({
