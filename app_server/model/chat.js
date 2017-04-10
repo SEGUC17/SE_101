@@ -1,5 +1,8 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
+    Schema=mongoose.Schema;
 var ObjectId = mongoose.SchemaTypes.ObjectId;
+var UserSchema = require('./User')
+var messageSchema = require('./message')
 
 var chatSchema = new mongoose.Schema({
 	user: {type: ObjectId, ref: UserSchema, required:true,unique:true},
@@ -7,4 +10,4 @@ var chatSchema = new mongoose.Schema({
 	messages: [{type: ObjectId, ref: messageSchema}]
 });
 
-mongoose.model('Chat', chatSchema);
+mongoose.model('Chat', chatSchema, 'Chats');

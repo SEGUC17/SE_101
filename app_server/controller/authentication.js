@@ -6,7 +6,8 @@ module.exports={
   Profile:require('../model/profile'),
   Product:require('../model/product'),
   Plan:require('../model/plan'),
-  
+  Chat: require('../model/chat'),
+  Message: require('../model/message')
 };
 var User = mongoose.model('User');
 
@@ -38,7 +39,7 @@ module.exports.login = function(req, res) {
   User.find({},function(err,doc){
     console.log(doc);
   })
- 
+
 if(!req.body.username || !req.body.password) {
 sendJSONresponse(res, 400, {
 "message": "All fields required"
@@ -54,7 +55,7 @@ User.find({},function(err,doc){
           sendJSONresponse(res, 200, {"token" : token});
 
         }
-        
+
 
       };
   });

@@ -1,14 +1,17 @@
 var mongoose = require('mongoose');
-var Chat = mongoose.model('Chat');
-var Message = mongoose.model('Message');
 var User = mongoose.model('User');
+var Message = mongoose.model('Message');
+var Chat = mongoose.model('Chat');
 
-module.exports userChat = function(req, res) {
+module.exports.userChat = function(req, res) {
     console.log(req.method, req.url);
     Chat.find({
-        user: req.query.user
+        user: req.query.id
     }, function(err, chat) {
-        if (err) {
+      if (err) {
+          res.send(err);
+      }else {
+        if (chat == null) {
             User.find({ admin: true }, function(err, users) {
                 var chat = new Chat()
                 chat.user = req.query.id
@@ -47,11 +50,12 @@ module.exports userChat = function(req, res) {
                 });
             });
         }
+      }
     })
 };
-module.exports userChatget = function(req, res) {
+module.exports.userChatget = function(req, res) {
     Chat.find({
-        user: req.query.user
+        user: req.query.id
     }, function(err, chat) {
         if (err) {
             res.send(err);
@@ -61,12 +65,16 @@ module.exports userChatget = function(req, res) {
 };
 
 
-module.exports adminChat = function(req, res) {
+module.exports.adminChat = function(req, res) {
     Chat.find({
         user: req.query.user,
         admin: req.query.admin
     }, function(err, chat) {
-        if (err) {
+      if (err) {
+          res.send(err);
+      }
+      else {
+        if (chat == null) {
             var chat = new Chat()
             chat.user = req.query.id
             chat.admin = req.query.admin
@@ -102,14 +110,14 @@ module.exports adminChat = function(req, res) {
                     res.json({ message: 'new Chat message sent from admin to user' });
                 });
             });
-        }
+        }}
     })
 };
 
-module.exports adminChatget = function(req, res) {
+module.exports.adminChatget = function(req, res) {
     Chat.find({
         user: req.query.user,
-        admin = req.query.admin
+        admin: req.query.admin
     }, function(err, chat) {
         if (err) {
             res.send(err);
@@ -118,9 +126,9 @@ module.exports adminChatget = function(req, res) {
     })
 };
 
-module.exports adminChatgetAll = function(req, res) {
+module.exports.adminChatgetAll = function(req, res) {
     Chat.find({
-        admin = req.query.admin
+        admin: req.query.admin
     }, function(err, chat) {
         if (err) {
             res.send(err);

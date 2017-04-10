@@ -16,7 +16,7 @@ var ctrlProfile=require('../controller/profileController');
 var ctrlUser=require('../controller/userController');
 var ctrlAdmin=require('../controller/adminController');
 var ctrlProduct=require('../controller/productController');
-var ctrlChat = require('../controller/chatContoller');
+var ctrlChat = require('../controller/chatController');
 
 // authentication
 router.post('/register', ctrlAuth.register);
