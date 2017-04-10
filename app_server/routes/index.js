@@ -12,10 +12,10 @@ var auth = jwt({
 });//This will be used to pass token to profile
 
 var ctrlAuth = require('../controller/authentication');
-var ctrlProfile=requmodule.exports = router;ire('../controller/profileController');
+var ctrlProfile=require('../controller/profileController');
 var ctrlUser=require('../controller/userController');
 var ctrlAdmin=require('../controller/adminController');
-var ctrlProduct=require('/controller/productController');
+var ctrlProduct=require('../controller/productController');
 // authentication
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
