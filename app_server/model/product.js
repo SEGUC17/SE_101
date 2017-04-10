@@ -3,8 +3,8 @@ var jwt = require('jsonwebtoken');
 
 var productSchema = new mongoose.Schema({
 name : String,
-price : Double,
+price : Number,
 details: String
 });
 
-mongoose.model('Product' , productSchema, 'Products');
+mongoose.model('Product' , productSchema);
