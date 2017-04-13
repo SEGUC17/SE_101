@@ -30,6 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
 mongoose.connect(DB_URI);
+require('./app_server/config/passport')(passport);
 app.use('/', index);
 
 
