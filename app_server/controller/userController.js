@@ -32,7 +32,7 @@ module.exports.viewHistory = function(req,res){
       return;
     }else{
       var history= user.user_history;
-      sendJSONresponse(res, 200, history);
+        res.status(200).json(history);
     }
 
   });
@@ -42,12 +42,13 @@ module.exports.viewProducts=function(req,res){
     Product.find(function(err,doc){
       if(err){
         console.log(err);
-      }
+      }else{
       for(var i=0;i<doc.length;i++){
         p.push(doc[i]);        
       };
+        res.status(200).json(p);
       //res.render('products',{products:p});
-
+      }
     });
 };
 module.exports.viewPlan=function(req,res){
@@ -55,13 +56,13 @@ module.exports.viewPlan=function(req,res){
     Plan.find(function(err,doc){
       if(err){
         console.log(err);
-      }
+      }else{
       for(var i=0;i<doc.length;i++){
         p.push(doc[i]);
         
-
       };
+        res.status(200).json(p);
       //res.render('plan',{plans:p});
-
+      }
     });
 };
