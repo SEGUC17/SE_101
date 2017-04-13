@@ -14,7 +14,7 @@ var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
 };
-
+//this method allows visitors to register on the system,input:username&password,output:success or error message
 module.exports.register = function(req, res) {
 
   if(!req.body.username || !req.body.password) {
@@ -28,13 +28,20 @@ module.exports.register = function(req, res) {
     // Attempt to save the user
     newUser.save(function(err) {
       if (err) {
+        //in case the user already registered before error message is thrown
         return res.json({ success: false, message: 'That email address already exists.'});
       }
+      //in cas of a new user , the user will be saved and a success message appears
       res.json({ success: true, message: 'Successfully created new user.' });
     });
   }
 
 };
+//this method allows clients to access the system to buy,select,view pages and edit their profiles
+//input:username and password
+//output: token is generated
+//err: if inputs are given wrong, then an error message is thrown
+//success: token is generated for the user, and a message appears 
 module.exports.login = function(req, res) {
    User.findOne({
     username: req.body.username
