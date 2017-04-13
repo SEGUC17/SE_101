@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('express-jwt');
+var passport=require('passport');
 var multiparty=require('multiparty');
 var multer=require('multer');
 var upload=multer({dest:'uploads/'});
@@ -19,8 +20,12 @@ var ctrlProduct=require('../controller/productController');
 // authentication
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
-router.get('/profile',ctrlProfile.viewProfile);
-router.post('/editProfile',ctrlProfile.editProfile);
+router.get('/dashboard', passport.authenticate('jwt', { session: false }), function(req, res) {
+  res.send('It worked! User id is: ' + req.user._id + '.');
+});
+
+router.get('/profile', passport.authenticate('jwt', { session: false }),ctrlProfile.viewProfile);
+router.post('/editProfile', passport.authenticate('jwt', { session: false }),ctrlProfile.editProfile);
 router.get('/selectPlan/:plan_id',ctrlUser.selectPlan);
 router.post('/addPlan',ctrlAdmin.addPlan);
 router.post('/addProduct',ctrlAdmin.addProduct);
