@@ -3,7 +3,7 @@ var User = mongoose.model('User');
 var Plan=mongoose.model('Plan')
 module.exports.selectPlan=function(req,res){
 
-  User.findById(req.payload._id).exec(function(err,user){
+  User.findById(req.user._id).exec(function(err,user){
 
     Plan.findById(req.params.plan_id,function(err,plan){
       var pl=new Plan({
@@ -25,7 +25,7 @@ module.exports.selectPlan=function(req,res){
 }
 
 module.exports.viewHistory = function(req,res){
-  UserfindById(req.payload._id).exec(function(err,user){
+  UserfindById(req.user._id).exec(function(err,user){
     if(err){
       console.log("oops something went wrong");
       sendJSONresponse(res,404,err); //not sure
