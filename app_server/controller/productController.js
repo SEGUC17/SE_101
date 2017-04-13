@@ -33,7 +33,7 @@ var buildProductList=function(req,res,results){
 //adds product to cart
 module.exports.addProduct = function(req,res){
   var product ; 
-  if(!req.payload._id){
+  if(!req.user._id){
     res.status(401).json({
       "message": "Please login first"
     });
@@ -41,7 +41,7 @@ module.exports.addProduct = function(req,res){
     Plan.findById(req.params.product_id, function(err,pproduct){
       product = pproduct;
     });
-    User.findById(req.payload._id, function(err,user){
+    User.findById(req.user._id, function(err,user){
       if(err) throw err;
       user.user_basket.push({
         name: product.name,
@@ -60,7 +60,7 @@ module.exports.addProduct = function(req,res){
 
 module.exports.removeFromCart = function(req, res){
   var product;
-  if(!req.payload._id){
+  if(!req.user._id){
     res.status(401).json({
       "message": "oops something went wrong"
     });
@@ -81,7 +81,7 @@ module.exports.removeFromCart = function(req, res){
 };
 //veiw cart to to remove or checkout
 module.exports.viewCart = function(req,res){
-  User.findById(req.payload._id,function(err,user){
+  User.findById(req.user._id,function(err,user){
     if(err){
       console.log('Cant Access')
     }else{
@@ -98,7 +98,7 @@ module.exports.checkout =  function (req,res){
 }
 
 module.exports.getCartDetails =function (req,res){
-  if(!req.payload._id){
+  if(!req.user._id){
     console.log('Cant Access');
   }else{
     User.findById(req.payload._id,function(err,user){
