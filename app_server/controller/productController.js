@@ -32,6 +32,7 @@ var buildProductList=function(req,res,results){
 };*/
 
 //adds product to cart
+
 module.exports.addProduct = function(req,res){
   var product ; 
   if(!req.user._id){
@@ -39,7 +40,7 @@ module.exports.addProduct = function(req,res){
       "message": "Please login first"
     });
   }else{
-    Plan.findById(req.params.product_id, function(err,pproduct){
+    Product.findById(req.params.product_id, function(err,pproduct){
       product = pproduct;
     });
     User.findById(req.user._id, function(err,user){
