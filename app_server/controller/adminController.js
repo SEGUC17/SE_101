@@ -49,7 +49,7 @@ module.exports.addPlan=function(req,res){
 	
 
 	module.exports.addProduct=function(req,res){
-		User.findById(req.payload._id).exec(function(err,user){
+		User.findById(req.user._id).exec(function(err,user){
 			if(!user.admin){
 				console.log('cannot access');
 			}else{
