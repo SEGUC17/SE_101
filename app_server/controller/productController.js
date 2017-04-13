@@ -4,15 +4,16 @@ var User = mongoose.model('User');
 var Product = mongoose.model('Product');
 
 //gets products to show on product page
-module.exports.getProducts = function(req,res){
+/*module.exports.getProducts = function(req,res){
 var products;
   if(err){
     console.log("oops something went wrong");
-    sendJSONresponse(res,404,err); //not sure
+     res.status(500).jsonp({ error: 'oops something went wrong' })
+    //sendJSONresponse(res,404,err); //not sure
     return;
   }else{
     products = buildProductList(req,res,results);
-    sendJSONresponse(res, 200, products);
+      res.status(200).json(products);
   }
 
   
@@ -28,7 +29,7 @@ var buildProductList=function(req,res,results){
     });
   });
   return products;
-};
+};*/
 
 //adds product to cart
 module.exports.addProduct = function(req,res){
@@ -52,7 +53,7 @@ module.exports.addProduct = function(req,res){
       user.save(function(err){
         if(err) throw err;
         console.log("Added to cart");
-        res.status(200).json(updatedUser);
+        res.status(200);
       });
     });
   }
@@ -76,7 +77,7 @@ module.exports.removeFromCart = function(req, res){
     user.save(function(err){
       if(err) throw err;
       console.log("Removed from cart");
-      res.status(200).json(updatedUser);
+      res.status(200);
 });
 };
 //veiw cart to to remove or checkout
@@ -110,6 +111,14 @@ module.exports.getCartDetails =function (req,res){
         for(var i=0;i<user.user_basket[i].length;i++){
         total=total+user.user_basket[i].price;
         productNames.push(user.user_basket[i].name);
+        res.format({
+        'text/plain': function(){
+      res.send(productNames);
+   },
+          'text/plain': function(){
+      res.send(total.toString());
+   }
+        });
         //res.render('CheckoutList',{pNames:productNames,ptotal:total});
         
 
