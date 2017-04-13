@@ -31,7 +31,7 @@ router.post('/addPlan',passport.authenticate('jwt', { session: false }),ctrlAdmi
 router.post('/addProduct',passport.authenticate('jwt', { session: false }),ctrlAdmin.addProduct);
 router.put('/editProduct',passport.authenticate('jwt', { session: false }),ctrlAdmin.editProduct);
 router.post('/addSponserAd',passport.authenticate('jwt', { session: false }),upload.single('img'),ctrlAdmin.addSponserAd);
-router.get('/products',ctrlProduct.getProducts);
+//router.get('/products',ctrlProduct.getProducts);
 router.put('/products',passport.authenticate('jwt', { session: false }),ctrlProduct.addProduct);
 router.get('/products/cart',passport.authenticate('jwt', { session: false }),ctrlProduct.viewCart);
 router.put('/products/cart',passport.authenticate('jwt', { session: false }),ctrlProduct.removeFromCart);
