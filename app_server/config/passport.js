@@ -1,30 +1,23 @@
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
+var User = require('../model/User');
+var config = require('../config/main');
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      // Return if user not found in database
-      if (!user) {
-        return done(null, false, {
-          message: 'User not found'
-        });
+// Setup work and export for the JWT passport strategy
+module.exports = function(passport) {
+  var opts = {};
+  opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
+  opts.secretOrKey = config.secret;
+  passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
+    User.findOne({id: jwt_payload.id}, function(err, user) {
+      if (err) {
+        return done(err, false);
       }
-      // Return if password is wrong
-      if (user.password!=password) {
-        return done(null, false, {
-          message: 'Password is wrong'
-        });
-      }else{
-          // If credentials are correct, return the user object
-          return done(null, user);
-
+      if (user) {
+        done(null, user);
+      } else {
+        done(null, false);
       }
-      
-      
     });
-  }
-));
+  }));
+};
