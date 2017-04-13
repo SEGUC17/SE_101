@@ -3,7 +3,7 @@ var User = mongoose.model('User');
 var Plan=mongoose.model('Plan')
 module.exports.selectPlan=function(req,res){
 
-  User.findById(req.payload._id).exec(function(err,user){
+  User.findById(req.user._id).exec(function(err,user){
 
     Plan.findById(req.params.plan_id,function(err,plan){
       var pl=new Plan({
@@ -25,14 +25,14 @@ module.exports.selectPlan=function(req,res){
 }
 
 module.exports.viewHistory = function(req,res){
-  UserfindById(req.payload._id).exec(function(err,user){
+  UserfindById(req.user._id).exec(function(err,user){
     if(err){
       console.log("oops something went wrong");
       sendJSONresponse(res,404,err); //not sure
       return;
     }else{
       var history= user.user_history;
-      sendJSONresponse(res, 200, history);
+        res.status(200).json(history);
     }
 
   });
@@ -42,12 +42,13 @@ module.exports.viewProducts=function(req,res){
     Product.find(function(err,doc){
       if(err){
         console.log(err);
-      }
+      }else{
       for(var i=0;i<doc.length;i++){
         p.push(doc[i]);        
       };
+        res.status(200).json(p);
       //res.render('products',{products:p});
-
+      }
     });
 };
 module.exports.viewPlan=function(req,res){
@@ -55,13 +56,13 @@ module.exports.viewPlan=function(req,res){
     Plan.find(function(err,doc){
       if(err){
         console.log(err);
-      }
+      }else{
       for(var i=0;i<doc.length;i++){
         p.push(doc[i]);
         
-
       };
+        res.status(200).json(p);
       //res.render('plan',{plans:p});
-
+      }
     });
 };

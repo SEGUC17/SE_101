@@ -9,6 +9,7 @@ var upload=multer({dest:'uploads/'});
 var fs=require('fs');
 var path=require('path');
 
+//this method views the app users,input: request users , output: error or document
 module.exports.viewUsers=function(req,res){
 	User.find(function(err,doc){
     if(err){
@@ -17,7 +18,7 @@ module.exports.viewUsers=function(req,res){
     console.log(doc);
 	});
 };
-
+//this method deoetes users, input: user ID to search with,output: err message or deletes the user and sends a success message 
 module.exports.deleteUser=function(req,res){
 	User.findById(req.body.id).exec(function(err,user){
 		user.remove(function(err){
@@ -28,8 +29,12 @@ module.exports.deleteUser=function(req,res){
 		});
 	});
 };
+
+//this method adds plans to the system, input:user id to search with ,
+//if the user is not an admin it throws an error, 
+//else it takes the name of the plan and its details as an input, adds the plan and then throws a success message 
 module.exports.addPlan=function(req,res){
-	User.findById(req.payload._id).exec(function(err,user){
+	User.findById(req.user._id).exec(function(err,user){
 		if(!user.admin){
 			console.log('cannot access');
 		}else{
@@ -48,8 +53,11 @@ module.exports.addPlan=function(req,res){
 	)};
 	
 
+//this method adds products to the system, input:user id to search with ,
+//if the user is not an admin it throws an error, 
+//else it takes the name,detals and price of the product as an input, adds the product and then throws a success message 
 	module.exports.addProduct=function(req,res){
-		User.findById(req.payload._id).exec(function(err,user){
+		User.findById(req.user._id).exec(function(err,user){
 			if(!user.admin){
 				console.log('cannot access');
 			}else{
@@ -67,9 +75,12 @@ module.exports.addPlan=function(req,res){
 			}
 			}
 		)};
+//this method adds sponsors Ads to the system, input:user id to search with ,
+//if the user is not an admin it throws an error, 
+//else it takes the name,details and image as an input,adds the AD and then throws a success message 
 
 module.exports.addSponserAd=function(req,res){
-	User.findById(req.payload._id).exec(function(err,user){
+	User.findById(req.user._id).exec(function(err,user){
 		if(!user.admin){
 			console.log('cannot access');
 		}else{
@@ -91,9 +102,9 @@ module.exports.addSponserAd=function(req,res){
 	}
 	)};
 
-
+//this method edits existing products,input:user id and product id, output: error message or success message
 module.exports.editProduct = function(req, res){
-	User.findById(req.payload._id).exec(function(err,user){
+	User.findById(req.user._id).exec(function(err,user){
 		if(err) throw err;
 		if(!user.admin){
 			console.log('cannot access');
