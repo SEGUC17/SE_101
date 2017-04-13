@@ -1,0 +1,15 @@
+db.products.save({name:'choco', price:2.0, details:'very good'})
+db.products.save({name:'choco2', price:3.0, details:'very very good'})
+db.products.save({name:'choco3', price:4.0, details:'very very very good'})
+db.products.save({name:'choco4', price:5.0, details:'very very very very good'})
+db.products.save({name:'choco5', price:6.0, details:'very very very very very good'})
+
+db.plan.save({name:'bulking', details:'Get Buff'})
+db.plan.save({name:'Cutting', details:'Get Shredded'})
+
+db.profile.save({name:'profile1',products:{db.products.find({name: {$eq:choco}),db.products.find({name: {$eq:choco2})}, db.plans.find({name: {$eq:Bulking})})
+
+db.user.save({username:'user1', password:'wqg492', user_basket:{db.products.find({name: {$eq:choco3}),db.products.find({name: {$eq:choco4}), })
+
+
+
