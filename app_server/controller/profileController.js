@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var User=mongoose.model('User');
 var profile = mongoose.model('Profile');
 var plan=mongoose.model('Plan');
+
+//allows the user to view his/her profile
 module.exports.viewProfile=function(req,res){
     if(!req.user._id){
         res.status(401).json({
@@ -16,6 +18,7 @@ module.exports.viewProfile=function(req,res){
     }
 
 };
+//allows the user to edit his/her profile
 module.exports.editProfile=function(req,res){
     if(!req.user._id){
         res.status(401).json({
