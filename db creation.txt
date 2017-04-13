@@ -4,12 +4,13 @@ db.products.save({name:'choco3', price:4.0, details:'very very very good'})
 db.products.save({name:'choco4', price:5.0, details:'very very very very good'})
 db.products.save({name:'choco5', price:6.0, details:'very very very very very good'})
 
-db.plan.save({name:'bulking', details:'Get Buff'})
-db.plan.save({name:'Cutting', details:'Get Shredded'})
+db.plans.save({name:'bulking', details:'Get Buff'})
+db.plans.save({name:'Cutting', details:'Get Shredded'})
 
-db.profile.save({name:'profile1',products:{db.products.find({name: {$eq:choco}),db.products.find({name: {$eq:choco2})}, db.plans.find({name: {$eq:Bulking})})
+db.profiles.save({name:'profile1',products:{db.products.find({name: {$eq:choco}),db.products.find({name: {$eq:choco2})}, db.plans.find({name: {$eq:Bulking})})
 
-db.user.save({username:'user1', password:'wqg492', user_basket:{db.products.find({name: {$eq:choco3}),db.products.find({name: {$eq:choco4}), })
+db.user.save({username:'user1', password:'wqg492', user_basket:{db.products.find({name: {$eq:choco3}),db.products.find({name: {$eq:choco4})}, user_history: {history,history2,history3}, profile: db.profiles.find({name: {$eq:profile1}), admin:False})
 
+db.user.save({username:'admin1', password:'wqg4923', admin:True})
 
 
