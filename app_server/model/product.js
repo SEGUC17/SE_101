@@ -7,4 +7,5 @@ price : Number,
 details: String
 });
 
-mongoose.model('Product' , productSchema);
+var product=mongoose.model('Product' , productSchema);
+module.exports=product;
