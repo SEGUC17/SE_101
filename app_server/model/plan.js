@@ -1,11 +1,9 @@
 var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 
-var productSchema = new mongoose.Schema({
+var planSchema = new mongoose.Schema({
 name : String,
-price : Number,
-details: String
+details : String
 });
 
-var product=mongoose.model('Product' , productSchema);
-module.exports=product;
+mongoose.model('Plan' , planSchema);
