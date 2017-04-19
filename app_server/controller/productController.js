@@ -34,7 +34,6 @@ var buildProductList=function(req,res,results){
 //adds product to cart
 
 module.exports.addProduct = function(req,res){
-
   if(!req.user._id){
     res.status(401).json({
       "message": "Please login first"
@@ -42,7 +41,6 @@ module.exports.addProduct = function(req,res){
   }else{
     Product.findById(req.body.product_id, function(err,product){
       User.findById(req.user._id, function(err,user){
-
       if(err) throw err;
       user.user_basket.push({
         name: product.name,
@@ -57,7 +55,6 @@ module.exports.addProduct = function(req,res){
       });
     });
     });
-
   }
 };
 

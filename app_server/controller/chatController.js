@@ -82,7 +82,6 @@ module.exports.adminChat = function(req, res) {
             chat.messages = [].push(msg)
             msg.save(function(err) {
                 if (err) {
-<<<<<<< HEAD
                     res.send(err);
                 }
                 chat.save(function(err, chat) {
@@ -90,7 +89,6 @@ module.exports.adminChat = function(req, res) {
                         res.send(err);
                     }
                     res.send(chat);
-=======
                   //  res.send(err);
                   throw err
                 }
@@ -101,8 +99,6 @@ module.exports.adminChat = function(req, res) {
                         //res.send(err);
                     }
                     res.send(chat);
-
->>>>>>> edf82d599e53c8569cc77785ce2ac68afc8a61e4
                 });
             });
         } else {
@@ -117,12 +113,9 @@ module.exports.adminChat = function(req, res) {
             });
             chat.save(function(err, chat) {
                 if (err) {
-<<<<<<< HEAD
                     res.send(err);
-=======
                     throw err
                     //res.send(err);
->>>>>>> edf82d599e53c8569cc77785ce2ac68afc8a61e4
                 }
                 res.send(chat);
             });

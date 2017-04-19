@@ -44,11 +44,7 @@ module.exports.register = function(req, res) {
 //input:username and password
 //output: token is generated
 //err: if inputs are given wrong, then an error message is thrown
-<<<<<<< HEAD
-//success: token is generated for the user, and a message appears
-=======
-//success: token is generated for the user, and a message appears
->>>>>>> edf82d599e53c8569cc77785ce2ac68afc8a61e4
+
 module.exports.login = function(req, res) {
    User.findOne({
     username: req.body.username
