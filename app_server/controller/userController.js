@@ -1,12 +1,15 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Product=mongoose.model('Product');
 var Plan=mongoose.model('Plan')
 //this method allows the user to select his/her own plan
 module.exports.selectPlan=function(req,res){
 
-  User.findById(req.user._id).exec(function(err,user){
+ 
 
-    Plan.findById(req.params.plan_id,function(err,plan){
+    Plan.findById(req.body.plan_id,function(err,plan){
+      console.log(plan);
+       User.findById(req.user._id).exec(function(err,user){
       var pl=new Plan({
         name:plan.name,
         details:plan.details
@@ -16,8 +19,9 @@ module.exports.selectPlan=function(req,res){
         if(err){
           throw err;
         };
-        res.status(200);
+        
         console.log('plan selected');
+         res.json({message: "Plan selected"});
       });
 
     });

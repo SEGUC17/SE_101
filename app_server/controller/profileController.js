@@ -12,7 +12,7 @@ module.exports.viewProfile=function(req,res){
         });
     }else{
         User.findById(req.user._id).exec(function(err,user){
-            res.status(200).json(user.profile);
+            res.status(200).json(user);
         })
 
     }
@@ -33,8 +33,7 @@ module.exports.editProfile=function(req,res){
             if(user){
                 user.username=req.body.username;
                 user.password=req.body.password;
-                user.plan=req.body.plan;
-                user.profile.name=req.body.profileName;                
+                               
 
             };
             user.save(function(err,updatedUser){

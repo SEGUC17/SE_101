@@ -16,7 +16,7 @@ var products;
       res.status(200).json(products);
   }
 
-  
+
 };
 var buildProductList=function(req,res,results){
   var products = [];
@@ -34,16 +34,15 @@ var buildProductList=function(req,res,results){
 //adds product to cart
 
 module.exports.addProduct = function(req,res){
-  var product ; 
+
   if(!req.user._id){
     res.status(401).json({
       "message": "Please login first"
     });
   }else{
-    Product.findById(req.params.product_id, function(err,pproduct){
-      product = pproduct;
-    });
-    User.findById(req.user._id, function(err,user){
+    Product.findById(req.body.product_id, function(err,product){
+      User.findById(req.user._id, function(err,user){
+
       if(err) throw err;
       user.user_basket.push({
         name: product.name,
@@ -54,9 +53,11 @@ module.exports.addProduct = function(req,res){
       user.save(function(err){
         if(err) throw err;
         console.log("Added to cart");
-        res.status(200);
+        res.json({message: "Added to Cart"});
       });
     });
+    });
+
   }
 };
 
@@ -121,14 +122,14 @@ module.exports.getCartDetails =function (req,res){
    }
         });
         //res.render('CheckoutList',{pNames:productNames,ptotal:total});
-        
+
 
       };
       }
     })
   }
 
-  
+
 };
 
 

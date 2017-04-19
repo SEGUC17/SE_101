@@ -28,13 +28,21 @@ router.get('/dashboard', passport.authenticate('jwt', { session: false }), funct
 
 router.get('/profile', passport.authenticate('jwt', { session: false }),ctrlProfile.viewProfile);
 router.post('/editProfile', passport.authenticate('jwt', { session: false }),ctrlProfile.editProfile);
-router.get('/selectPlan/:plan_id',passport.authenticate('jwt', { session: false }),ctrlUser.selectPlan);
+router.post('/selectPlan',passport.authenticate('jwt', { session: false }),ctrlUser.selectPlan);
 router.post('/addPlan',passport.authenticate('jwt', { session: false }),ctrlAdmin.addPlan);
 router.post('/addProduct',passport.authenticate('jwt', { session: false }),ctrlAdmin.addProduct);
 router.put('/editProduct',passport.authenticate('jwt', { session: false }),ctrlAdmin.editProduct);
+router.put('/editPlan',passport.authenticate('jwt', { session: false }),ctrlAdmin.editPlan);
 router.post('/addSponserAd',passport.authenticate('jwt', { session: false }),upload.single('img'),ctrlAdmin.addSponserAd);
+router.put('/editSponserAd',passport.authenticate('jwt', { session: false }),upload.single('img'),ctrlAdmin.editSponserAd);
+router.delete('/deletePlan',passport.authenticate('jwt', { session: false }),ctrlAdmin.deletePlan);
+router.delete('/deleteProduct',passport.authenticate('jwt', { session: false }),ctrlAdmin.deleteProduct);
+router.delete('/deleteSponserAd',passport.authenticate('jwt', { session: false }),ctrlAdmin.deleteSponserAd);
+router.delete('/deleteUser',passport.authenticate('jwt', { session: false }),ctrlAdmin.deleteUser);
 //router.get('/products',ctrlProduct.getProducts);
-router.put('/products',passport.authenticate('jwt', { session: false }),ctrlProduct.addProduct);
+router.post('/deleteUser',passport.authenticate('jwt', { session: false }),ctrlAdmin.deleteUser);
+router.get('/viewUsers',passport.authenticate('jwt', { session: false }),ctrlAdmin.viewUsers);
+router.post('/addproducts',passport.authenticate('jwt', { session: false }),ctrlProduct.addProduct);
 router.get('/products/cart',passport.authenticate('jwt', { session: false }),ctrlProduct.viewCart);
 router.put('/products/cart',passport.authenticate('jwt', { session: false }),ctrlProduct.removeFromCart);
 router.all('/products/invoice',passport.authenticate('jwt', { session: false }), ctrlProduct.checkout);

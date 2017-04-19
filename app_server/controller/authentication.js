@@ -8,6 +8,7 @@ module.exports={
   Plan:require('../model/plan'),
   Chat: require('../model/chat'),
   Message: require('../model/message')
+
 };
 var User = mongoose.model('User');
 
@@ -23,7 +24,8 @@ module.exports.register = function(req, res) {
   } else {
     var newUser = new User({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      //admin:true
     });
 
     // Attempt to save the user
@@ -42,7 +44,11 @@ module.exports.register = function(req, res) {
 //input:username and password
 //output: token is generated
 //err: if inputs are given wrong, then an error message is thrown
-//success: token is generated for the user, and a message appears 
+<<<<<<< HEAD
+//success: token is generated for the user, and a message appears
+=======
+//success: token is generated for the user, and a message appears
+>>>>>>> edf82d599e53c8569cc77785ce2ac68afc8a61e4
 module.exports.login = function(req, res) {
    User.findOne({
     username: req.body.username
