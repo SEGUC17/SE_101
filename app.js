@@ -8,8 +8,8 @@ var flash   = require('connect-flash');
 var session=require('express-session');
 var DB_URI = 'mongodb://localhost/Fitness';
 var mongoose=require('mongoose');
-var index = require('./app_server/routes/index');
-
+var api = require('./app_server/routes/index');
+var index = require('./routes/index');
 
 
 var app = express();
@@ -31,8 +31,8 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 mongoose.connect(DB_URI);
 require('./app_server/config/passport')(passport);
+app.use('/api', api);
 app.use('/', index);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Plan=mongoose.model('Plan')
+//this method allows the user to select his/her own plan
 module.exports.selectPlan=function(req,res){
 
   User.findById(req.user._id).exec(function(err,user){
@@ -23,7 +24,7 @@ module.exports.selectPlan=function(req,res){
 
   })
 }
-
+//tgis method allows the user to view his/her history of transactions(purchases, plans selections...etc)
 module.exports.viewHistory = function(req,res){
   UserfindById(req.user._id).exec(function(err,user){
     if(err){
@@ -37,6 +38,8 @@ module.exports.viewHistory = function(req,res){
 
   });
 };
+
+//allows users to view the availabile products on the system
 module.exports.viewProducts=function(req,res){
   var p=[];
     Product.find(function(err,doc){
@@ -51,6 +54,7 @@ module.exports.viewProducts=function(req,res){
       }
     });
 };
+//allows the users to view the availabile plans on the system 
 module.exports.viewPlan=function(req,res){
   var p=[];
     Plan.find(function(err,doc){
