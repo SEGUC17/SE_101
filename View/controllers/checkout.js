@@ -1,6 +1,6 @@
 angular.module('fitnessApp').
   component('checkOut', {
-    templateUrl: 'components/checkout/checkout.html',
+    templateUrl: 'partials/checkout.html',
     controller: function checkoutController($http) {
       var self = this;
       this.heading = "Cart";
