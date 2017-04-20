@@ -87,21 +87,12 @@ module.exports.adminChat = function(req, res) {
                 chat.save(function(err, chat) {
                     if (err) {
                         res.send(err);
-                    }
-                    res.send(chat);
-                  //  res.send(err);
-                  throw err
-                }
-                chat.save(function(err, chat) {
-                    if (err)
-                    {
                         throw err
-                        //res.send(err);
                     }
                     res.send(chat);
-                });
             });
-        } else {
+        })
+      } else {
             var msg = new Message()
             msg.text = req.body.text
             msg.user = req.query.admin

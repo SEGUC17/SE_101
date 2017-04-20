@@ -10,13 +10,15 @@ var DB_URI = 'mongodb://localhost/Fitness';
 var mongoose=require('mongoose');
 var api = require('./app_server/routes/index');
 var index = require('./routes/index');
+var cons = require('consolidate');
 
 
 var app = express();
 
 // view engine setup
+app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -53,5 +55,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-
