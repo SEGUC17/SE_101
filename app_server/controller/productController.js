@@ -132,6 +132,9 @@ module.exports.charge=function(req,res){
       if(err & err.type==="StripeCardError"){
         res.json({message:"Something Wrong with your card"});
       }else{
+        User.findById(req.user_id,function(err,user){
+          user.user_basket=[];
+        });
         res.json({message:"Payment is Successful"});
       }
 
@@ -139,7 +142,6 @@ module.exports.charge=function(req,res){
     
   }
 };
-
 module.exports.getCartDetails =function (req,res){
   if(!req.user._id){
     console.log('Cant Access');
