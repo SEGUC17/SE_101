@@ -83,21 +83,62 @@ module.exports.removeFromCart = function(req, res){
 };
 //veiw cart to to remove or checkout
 module.exports.viewCart = function(req,res){
+   var cart=[];
+   var total=0
   User.findById(req.user._id,function(err,user){
     if(err){
       console.log('Cant Access')
     }else{
-      var cart=[];
-      cart=user.user_basket;
-      //res.render('Cart',{cart:cart});
+      Product.find(function(err,products){
+        if(err){
+          throw err;
+        }{
+          for(var i=0;i<user.user_basket.length;i++){
+            for(var j=0;j<products.length;j++){
+              
+              if(products[j]._id==user.user_basket[i].toString()){
+                cart.push(products[j]);
+                total=total+products[j].price;
+                
+                
+              }
+              
+            }
+          }
+          console.log(cart);
+          res.json({cart,total});
+        }
+      });
+
     }
 
   });
 };
 
-module.exports.checkout =  function (req,res){
-// sprint 2 be3oon ellah
-}
+//s Function where a stripe token generated from data provided by the checkout partial 
+// Success:message show "Payment is Successful"
+//Error: message show "Something Wrong with your card"
+module.exports.charge=function(req,res){
+  if(!req.user._id){
+    console.log("CAnnot Access")
+  }else{
+    var token=req.body.stripeToken;
+    var charge=req.body.charge;
+    var checkout=stripe.charges.create({
+      amount:charge,
+      currency:"usd",
+      source:token
+    },function(err,c){
+      if(err & err.type==="StripeCardError"){
+        res.json({message:"Something Wrong with your card"});
+      }else{
+        res.json({message:"Payment is Successful"});
+      }
+
+    });
+    
+  }
+};
 
 module.exports.getCartDetails =function (req,res){
   if(!req.user._id){
