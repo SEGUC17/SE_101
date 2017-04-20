@@ -44,7 +44,7 @@ router.get('/viewUsers',passport.authenticate('jwt', { session: false }),ctrlAdm
 router.post('/addproducts',passport.authenticate('jwt', { session: false }),ctrlProduct.addProduct);
 router.get('/products/cart',passport.authenticate('jwt', { session: false }),ctrlProduct.viewCart);
 router.put('/products/cart',passport.authenticate('jwt', { session: false }),ctrlProduct.removeFromCart);
-router.all('/products/invoice',passport.authenticate('jwt', { session: false }), ctrlProduct.checkout);
+router.post('/charge',passport.authenticate('jwt', { session: false }),ctrlProduct.charge);
 router.get('profile/viewHistory',passport.authenticate('jwt', { session: false }), ctrlUser.viewHistory);
 router.get('/products',ctrlUser.viewProducts);
 router.get('/plans',ctrlUser.viewPlan);
