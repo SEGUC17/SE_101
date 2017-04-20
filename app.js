@@ -8,17 +8,15 @@ var flash   = require('connect-flash');
 var session=require('express-session');
 var DB_URI = 'mongodb://localhost/Fitness';
 var mongoose=require('mongoose');
-var api = require('./app_server/routes/index');
-var index = require('./routes/index');
-var cons = require('consolidate');
+var index = require('./app_server/routes/index');
+
 
 
 var app = express();
 
 // view engine setup
-app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
+app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -33,8 +31,8 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 mongoose.connect(DB_URI);
 require('./app_server/config/passport')(passport);
-app.use('/api', api);
 app.use('/', index);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

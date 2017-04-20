@@ -22,11 +22,11 @@ module.exports.userChat = function(req, res) {
                     c.messages = [msg]
                     msg.save(function(err) {
                         if (err) {
-                            res.send("can't save msg ", err);
+                            res.json({ message: 'cant save message' });
                         }
                         c.save(function(err, chat) {
                             if (err) {
-                                res.send(err);
+                                res.json({ message: 'cant save chat' });
                             }
                             res.send(chat);
                         });
@@ -42,12 +42,12 @@ module.exports.userChat = function(req, res) {
             c.messages = [].push(msg)
             msg.save(function(err) {
                 if (err) {
-                    res.send("can't save msg ", err);
+                    res.json({ message: 'cant save message' });
                 }
             });
             c.save(function(err) {
                 if (err) {
-                    res.send("can't save chat ", err);
+                    res.json({ message: 'cant save chat' });
                 }
                 res.json({ message: 'new Chat message sent to admin' });
             });

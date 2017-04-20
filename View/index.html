@@ -1,1 +1,20 @@
 //main html view
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <chat ng-show="!admin"></chat>
+  <adminchat ng-show="admin"></adminchat>
+  </body>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-socket-io/socket.js"></script>
+  <sciprt src="services/chatService.js"></script>
+  <sciprt src="controllers/chat.js"></script>
+  <sciprt src="controllers/adminchat.js"></script>
+  <sciprt src="app.js"></script>
+
+</html>
