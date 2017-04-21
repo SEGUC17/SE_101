@@ -1,0 +1,12 @@
+<div class="editProduct" style='text-align:center' ng-controller='editProductctrl'>
+<form name='form'>
+  <script type ="text/javascript">
+
+<label id="product_name" style='padding-left:10px'>Name</label>
+<input ng-model="productName" ng-change="setProductName(product_name)"/>
+
+<label id="product_price" style='padding-left:10px'>Price</label>
+<input ng-model="productPrice" ng-change="setProductPrice(product_price)"/>
+
+<label id="product_details" style='padding-left:10px'>Details</label>
+<input ng-model="productDetails" ng-change="setProductDetails(product_details)"/>
