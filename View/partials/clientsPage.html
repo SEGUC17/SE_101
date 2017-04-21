@@ -2,4 +2,8 @@
 <form name='form'>
   <script type ="text/javascript">
 
+      <ul ng-repeat="clients in clientsList">
+    <li>{{clients.username + ' /n ' + clients.password + ' /n ' + clients.user_basket+' /n '+clients.user_history + ' /n '+clients.profile + ' /n ' + clients.admin}}</li>
+
+    
     <button ng-click="DeleteUsers()">Delete Users</button>
