@@ -2,36 +2,7 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Product = mongoose.model('Product');
-
-//gets products to show on product page
-/*module.exports.getProducts = function(req,res){
-var products;
-  if(err){
-    console.log("oops something went wrong");
-     res.status(500).jsonp({ error: 'oops something went wrong' })
-    //sendJSONresponse(res,404,err); //not sure
-    return;
-  }else{
-    products = buildProductList(req,res,results);
-      res.status(200).json(products);
-  }
-
-  
-};
-var buildProductList=function(req,res,results){
-  var products = [];
-  results.forEach(function(doc){
-    products.push({
-      name: doc.obj.name,
-      price: doc.obj.price,
-      details: doc.obj.details,
-      _id: doc.obj._id
-    });
-  });
-  return products;
-};*/
-
-//adds product to cart
+var Plan =mongoose.model('Plan');
 
 module.exports.addProduct = function(req,res){
   
@@ -85,18 +56,10 @@ module.exports.removeFromCart = function(req, res){
 module.exports.viewCart = function(req,res){
    var cart=[];
    var total=0;
-   var pl;
   User.findById(req.user._id,function(err,user){
     if(err){
       console.log('Cant Access')
     }else if(user.plan!=null){
-      Plan.findById(plan._id,function(err,plan){
-        if(err) throw err;
-        if(plan){
-          var pl=plan;
-
-        }
-      });
       Product.find(function(err,products){
         if(err){
           throw err;
@@ -114,9 +77,22 @@ module.exports.viewCart = function(req,res){
             }
           }
         }
+        var id=user.plan.toString();
+      Plan.find(function(err,plans){
+       for(var i=0;i<plans.length;i++){
+         if(plans[i].equals(user.plan)){
+          
+           console.log(plans[i]);
+           var plan=plans[i];
+           total=total+25;
+       res.json({cart,total,plan});
+         }
+       }
+       
+      });  
+      
       });
-      total=total+25;
-      res.json({cart,total,plan});
+      
 
     }else{
       Product.find(function(err,products){
@@ -163,7 +139,24 @@ module.exports.charge=function(req,res){
         res.json({message:"Something Wrong with your card"});
       }else{
         User.findById(req.user_id,function(err,user){
+          for(var i=0;i<user.user_basket.length;i++){
+            Product.findById(user.user_basket[i].toString,function(err,product){
+            var d=new Date();
+            var ds=d.toString();
+            var paymentStatment="Product :"+product.name+"in"+ds;
+            user.user_history.push(paymentStatment);
+            });
+          }
+          if(user.plan){
+            var d=new Date();
+            var dp=d.toString();
+            Plan.findById(user.plan.toString(),function(err,plan){
+              user.user_history.push("Plan :"+plan.name+"in"+dp);
+            });
+          }
           user.user_basket=[];
+          user.profile.plan=user.plan;
+          user.plan=null;
         });
         res.json({message:"Payment is Successful"});
       }
