@@ -13,7 +13,7 @@ blogApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
 }]);
 
 fitnessApp.config(function($routeProvider){
-  
+
   when('/charge',{
     templateUrl : '/partials/checkout.html',
     controller : 'checkoutController'
@@ -27,5 +27,20 @@ fitnessApp.config(function($routeProvider){
   when('/admin/editProducts', {
     templateUrl : '/partials/adminEditProducts.html',
     controller : 'adminEditProductsctrl'
+  })
+
+  when('/admin/editPlans', {
+    templateUrl : '/partials/adminEditPlans.html',
+    controller : 'adminEditPlansctrl'
+  })
+
+  when('/admin/editUsers', {
+    templateUrl : '/partials/adminEditUsers.html',
+    controller : 'adminEditUsersctrl'
+  })
+
+  when('/admin/editSponserAds', {
+    templateUrl : '/partials/adminEditSponserAds.html',
+    controller : 'adminEditSponserAdsctrl'
   })
 });
