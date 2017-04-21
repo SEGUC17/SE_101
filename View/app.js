@@ -26,21 +26,21 @@ fitnessApp.config(function($routeProvider){
 
   when('/admin/editProducts', {
     templateUrl : '/partials/adminEditProducts.html',
-    controller : 'adminEditProductsctrl'
+    controller : 'productsctrl'
   })
 
   when('/admin/editPlans', {
     templateUrl : '/partials/adminEditPlans.html',
-    controller : 'adminEditPlansctrl'
+    controller : 'plansctrl'
   })
 
   when('/admin/editUsers', {
     templateUrl : '/partials/adminEditUsers.html',
-    controller : 'adminEditUsersctrl'
+    controller : 'editUsersctrl'
   })
 
   when('/admin/editSponserAds', {
     templateUrl : '/partials/adminEditSponserAds.html',
-    controller : 'adminEditSponserAdsctrl'
+    controller : 'editSponserAdsctrl'
   })
 });
