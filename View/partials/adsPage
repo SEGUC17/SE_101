@@ -1,5 +1,0 @@
-<div class="adminPage" style='text-align:center' ng-controller='adminPagectrl'>
-<form name='form'>
-  <script type ="text/javascript">
-  <label id="Ad_name" style='padding-left:10px'>Name</label>
-  <input ng-model="AdName" ng-change="setAdName(Ad_name)"/>
