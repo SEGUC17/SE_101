@@ -1,0 +1,14 @@
+<div class="editSponserAd" style='text-align:center' ng-controller='editSponserAdsctrl'>
+<form name='form'>
+  <script type ="text/javascript">
+
+
+<div style="float:left;padding:10px;margin:0 auto;">
+    <h3>Products</h3>
+
+<ul ng-repeat="ad in SponserAds">
+  <li>{{SponserAds.name + '\n' + SponserAds.details}}</li>
+   <p><button ng-click="edit(ad)">Edit</button></p>
+    <p><button ng-click="delete(ad)">Delete</button></p>
+</ul>
+</div>
