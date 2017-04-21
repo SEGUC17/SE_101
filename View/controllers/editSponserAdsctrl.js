@@ -1,3 +1,5 @@
+//here you can add , edit , or delete a sponser ad
+
 fitnessApp.controller('editSponserAdsctrl', fuction($scope, editSponserAdssrv){
   var sponserAdName;
   var sponserAdId;
