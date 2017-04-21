@@ -1,4 +1,4 @@
-<div class="editProducts" style='text-align:center' ng-controller='editProductsctrl'>
+<div class="editProducts" style='text-align:center' ng-controller='productsctrl'>
 <form name='form'>
   <script type ="text/javascript">
 
@@ -6,7 +6,7 @@
 <div style="float:left;padding:10px;margin:0 auto;">
     <h3>Products</h3>
 
-<ul ng-repeat="products in list">
+<ul ng-repeat="product in products">
   <li>{{product.name + '        ' + product.price + '\n' + product.details}}</li>
    <p><button ng-click="edit(product)">Edit</button></p>
     <p><button ng-click="delete(product)">Delete</button></p>
