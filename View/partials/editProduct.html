@@ -3,10 +3,12 @@
   <script type ="text/javascript">
 
 <label id="product_name" style='padding-left:10px'>Name</label>
-<input ng-model="productName" ng-change="setProductName(product_name)"/>
+<input ng-model="productName" ng-change="setProductName(productName)"/>
 
 <label id="product_price" style='padding-left:10px'>Price</label>
-<input ng-model="productPrice" ng-change="setProductPrice(product_price)"/>
+<input ng-model="productPrice" ng-change="setProductPrice(productPrice)"/>
 
 <label id="product_details" style='padding-left:10px'>Details</label>
-<input ng-model="productDetails" ng-change="setProductDetails(product_details)"/>
+<input ng-model="productDetails" ng-change="setProductDetails(productDetails)"/>
+
+  <button ng-click="EditProduct()">Save</button
