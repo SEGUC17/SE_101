@@ -1,3 +1,4 @@
+//here  you can view or delete
 fitnessApp.controller('editClientsctrl', fuction($scope, editClientssrv){
 
 
