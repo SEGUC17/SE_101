@@ -6,9 +6,9 @@ angular.module('fitnessApp').
       $http.get('https://localhost:3000//products/cart').then(function(response) {
         self.products = response.data.cart;
         self.total=response.data.total;
+        self.plan=respnse.data.plan;
         
       });
 
         }
   });
-
