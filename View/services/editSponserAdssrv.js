@@ -9,6 +9,12 @@ fitnessApp('editSponserAdssrv', function($http){
       $http.put('/editSponserAd',data);
     },
 
+    deleteSponserAd : function(data){
+      $http.delete('/deleteProduct',data);
+    }
 
+
+  };
+});
+ 
   
-  }
