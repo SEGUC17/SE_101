@@ -43,4 +43,9 @@ fitnessApp.config(function($routeProvider){
     templateUrl : '/partials/adminEditSponserAds.html',
     controller : 'editSponserAdsctrl'
   })
+  
+  when('/admin/createNewProduct',{
+    templateUrl : '/partials/createNewProduct.html',
+    controller : 'editProductsctrl'
+  })
 });
