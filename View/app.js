@@ -26,7 +26,7 @@ fitnessApp.config(function($routeProvider){
 
   when('/admin/editProducts', {
     templateUrl : '/partials/adminEditProducts.html',
-    controller : 'productsctrl'
+    controller : 'editProductsctrl'
   })
 
   when('/admin/editPlans', {
