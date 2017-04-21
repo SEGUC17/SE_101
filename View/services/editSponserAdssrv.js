@@ -5,7 +5,10 @@ fitnessApp('editSponserAdssrv', function($http){
       $http.post('/addSponserAd',data);
     },
     
-    
+        editSponserAd : function(data){
+      $http.put('/editSponserAd',data);
+    },
+
 
   
   }
