@@ -84,10 +84,40 @@ module.exports.removeFromCart = function(req, res){
 //veiw cart to to remove or checkout
 module.exports.viewCart = function(req,res){
    var cart=[];
-   var total=0
+   var total=0;
+   var pl;
   User.findById(req.user._id,function(err,user){
     if(err){
       console.log('Cant Access')
+    }else if(user.plan!=null){
+      Plan.findById(plan._id,function(err,plan){
+        if(err) throw err;
+        if(plan){
+          var pl=plan;
+
+        }
+      });
+      Product.find(function(err,products){
+        if(err){
+          throw err;
+        }{
+          for(var i=0;i<user.user_basket.length;i++){
+            for(var j=0;j<products.length;j++){
+              
+              if(products[j]._id==user.user_basket[i].toString()){
+                cart.push(products[j]);
+                total=total+products[j].price;
+                
+                
+              }
+              
+            }
+          }
+        }
+      });
+      total=total+25;
+      res.json({cart,total,plan});
+
     }else{
       Product.find(function(err,products){
         if(err){
