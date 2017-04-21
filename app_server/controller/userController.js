@@ -24,7 +24,7 @@ module.exports.selectPlan=function(req,res){
 
   })
 }
-}
+
 //tgis method allows the user to view his/her history of transactions(purchases, plans selections...etc)
 module.exports.viewHistory = function(req,res){
   UserfindById(req.user._id).exec(function(err,user){
