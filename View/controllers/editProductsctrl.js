@@ -12,7 +12,7 @@ fitnessApp.controller('editproductsctrl', fuction($scope, editProductssrv){
     editproductssrv.editProduct(data);
   };
 
-  $scope.DeleProduct = function(data){
+  $scope.DeleteProduct = function(data){
     deleteProduct(data);
   }
 });
