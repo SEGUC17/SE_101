@@ -6,7 +6,7 @@ blogApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
   var checkoutState = {
     name: 'checkout',
     url: '/checkout',
-    template: '<check-out></check-out>'
+    template: '/partials/checkout.html'
   }
   $stateProvider.state(checkOutState);
   $urlRouterProvider.when('', '/products');
@@ -14,7 +14,7 @@ blogApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
 
 fitnessApp.config(function($routeProvider){
 
-  when('/charge',{
+  when('/checkout',{
     templateUrl : '/partials/checkout.html',
     controller : 'checkoutController'
   })
