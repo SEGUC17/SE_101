@@ -5,7 +5,7 @@ blogApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider,
   //checkout state : <check-out> refers to checkout component
   var checkoutState = {
     name: 'checkout',
-    url: '/charge',
+    url: '/checkout',
     template: '<check-out></check-out>'
   }
   $stateProvider.state(checkOutState);
