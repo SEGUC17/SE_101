@@ -10,11 +10,7 @@ module.exports.selectPlan=function(req,res){
     Plan.findById(req.body.plan_id,function(err,plan){
       console.log(plan);
        User.findById(req.user._id).exec(function(err,user){
-      var pl=new Plan({
-        name:plan.name,
-        details:plan.details
-      });
-      user.plan=pl;
+      user.plan=plan;
       user.save(function(err){
         if(err){
           throw err;
@@ -28,6 +24,7 @@ module.exports.selectPlan=function(req,res){
 
   })
 }
+
 //tgis method allows the user to view his/her history of transactions(purchases, plans selections...etc)
 module.exports.viewHistory = function(req,res){
   UserfindById(req.user._id).exec(function(err,user){

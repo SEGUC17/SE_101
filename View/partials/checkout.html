@@ -1,6 +1,9 @@
-<h1>{{ $ctrl.heading }}</h1>
-<div class="app-post" ng-repeat="product in $ctrl.products">
-	<a ><h2>{{ product.name }}+" For  "+{{product.price}}</h2></a>
+<h1>CheckOut</h1>
+<h3>Invoice</h3>
+<div class="app-checkout" ng-repeat="product in $ctrl.products">
+	<h2>{{ product.name }}+" For  "+{{product.price}}</h2>
+</div>	
+    <h1>{{plan.name}}+"Plan For 20 $"</h1>
     <h1>The Total Price of your products is {{$ctrl.total}}</h1>
     <form action="/charge" method="POST">
   <script
@@ -15,4 +18,3 @@
   </script>
   <input type="hidden" name="charge" value ="{{$ctrl.total}"> 
 </form>
-</div>

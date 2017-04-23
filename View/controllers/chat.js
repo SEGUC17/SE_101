@@ -1,7 +1,4 @@
-angular.module('fitnessApp').
-  component('chat', {
-    templateUrl: 'partials/chat.html',
-    controller: function chatController($scope, $element, chatSocket, Session, $log) {
+fitnessApp.controller('chatController', function($scope, $element, chatSocket, Session, $log) {
       $scope.message = "";
       $scope.$watch('messageLog', function() {
         var textArea = $element[1].children[0];
@@ -10,11 +7,11 @@ angular.module('fitnessApp').
       $scope.messageLog = 'Ready to chat!';
       $scope.sendMessage = function(msg){
         if(msg!=""){
-      $http.post({
+      $http({
         url: 'https://localhost:3000/user/chat',
         method: 'POST',
         params : {
-          ':id' : Session._id
+          ':id' : Session._id,
           'text' : msg
         }
       }).then(function(response) {
@@ -46,5 +43,4 @@ angular.module('fitnessApp').
         });
 
       });
-    }
-  });
+    };

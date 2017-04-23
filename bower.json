@@ -1,0 +1,22 @@
+{
+  "name": "Fitness",
+  "description": "",
+  "main": "",
+  "authors": [
+    "..."
+  ],
+  "license": "MIT",
+  "homepage": "View/index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-socket-io": "^0.7.0",
+    "angular" : "*",
+    "html5-boilerplate": "*"
+  }
+}

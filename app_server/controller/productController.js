@@ -2,38 +2,10 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Product = mongoose.model('Product');
-
-//gets products to show on product page
-/*module.exports.getProducts = function(req,res){
-var products;
-  if(err){
-    console.log("oops something went wrong");
-     res.status(500).jsonp({ error: 'oops something went wrong' })
-    //sendJSONresponse(res,404,err); //not sure
-    return;
-  }else{
-    products = buildProductList(req,res,results);
-      res.status(200).json(products);
-  }
-
-
-};
-var buildProductList=function(req,res,results){
-  var products = [];
-  results.forEach(function(doc){
-    products.push({
-      name: doc.obj.name,
-      price: doc.obj.price,
-      details: doc.obj.details,
-      _id: doc.obj._id
-    });
-  });
-  return products;
-};*/
-
-//adds product to cart
+var Plan =mongoose.model('Plan');
 
 module.exports.addProduct = function(req,res){
+  
   if(!req.user._id){
     res.status(401).json({
       "message": "Please login first"
@@ -55,6 +27,7 @@ module.exports.addProduct = function(req,res){
       });
     });
     });
+    
   }
 };
 
@@ -81,22 +54,117 @@ module.exports.removeFromCart = function(req, res){
 };
 //veiw cart to to remove or checkout
 module.exports.viewCart = function(req,res){
+   var cart=[];
+   var total=0;
   User.findById(req.user._id,function(err,user){
     if(err){
       console.log('Cant Access')
+    }else if(user.plan!=null){
+      Product.find(function(err,products){
+        if(err){
+          throw err;
+        }{
+          for(var i=0;i<user.user_basket.length;i++){
+            for(var j=0;j<products.length;j++){
+              
+              if(products[j]._id==user.user_basket[i].toString()){
+                cart.push(products[j]);
+                total=total+products[j].price;
+                
+                
+              }
+              
+            }
+          }
+        }
+        var id=user.plan.toString();
+      Plan.find(function(err,plans){
+       for(var i=0;i<plans.length;i++){
+         if(plans[i].equals(user.plan)){
+          
+           console.log(plans[i]);
+           var plan=plans[i];
+           total=total+25;
+       res.json({cart,total,plan});
+         }
+       }
+       
+      });  
+      
+      });
+      
+
     }else{
-      var cart=[];
-      cart=user.user_basket;
-      //res.render('Cart',{cart:cart});
+      Product.find(function(err,products){
+        if(err){
+          throw err;
+        }{
+          for(var i=0;i<user.user_basket.length;i++){
+            for(var j=0;j<products.length;j++){
+              
+              if(products[j]._id==user.user_basket[i].toString()){
+                cart.push(products[j]);
+                total=total+products[j].price;
+                
+                
+              }
+              
+            }
+          }
+          console.log(cart);
+          res.json({cart,total});
+        }
+      });
+
     }
 
   });
 };
 
-module.exports.checkout =  function (req,res){
-// sprint 2 be3oon ellah
-}
+//s Function where a stripe token generated from data provided by the checkout partial 
+// Success:message show "Payment is Successful"
+//Error: message show "Something Wrong with your card"
+module.exports.charge=function(req,res){
+  if(!req.user._id){
+    console.log("CAnnot Access")
+  }else{
+    var token=req.body.stripeToken;
+    var charge=req.body.charge;
+    var checkout=stripe.charges.create({
+      amount:charge,
+      currency:"usd",
+      source:token
+    },function(err,c){
+      if(err & err.type==="StripeCardError"){
+        res.json({message:"Something Wrong with your card"});
+      }else{
+        User.findById(req.user_id,function(err,user){
+          for(var i=0;i<user.user_basket.length;i++){
+            Product.findById(user.user_basket[i].toString,function(err,product){
+            var d=new Date();
+            var ds=d.toString();
+            var paymentStatment="Product :"+product.name+"in"+ds;
+            user.user_history.push(paymentStatment);
+            });
+          }
+          if(user.plan){
+            var d=new Date();
+            var dp=d.toString();
+            Plan.findById(user.plan.toString(),function(err,plan){
+              user.user_history.push("Plan :"+plan.name+"in"+dp);
+            });
+          }
+          user.user_basket=[];
+          user.profile.plan=user.plan;
+          user.plan=null;
+        });
+        res.json({message:"Payment is Successful"});
+      }
 
+    });
+    
+  }
+};
 module.exports.getCartDetails =function (req,res){
   if(!req.user._id){
     console.log('Cant Access');
@@ -119,14 +187,14 @@ module.exports.getCartDetails =function (req,res){
    }
         });
         //res.render('CheckoutList',{pNames:productNames,ptotal:total});
-
+        
 
       };
       }
     })
   }
 
-
+  
 };
 
 

@@ -1,0 +1,16 @@
+<div class="editProducts" style='text-align:center' ng-controller='productsctrl'>
+<form name='form'>
+  <script type ="text/javascript">
+
+
+<div style="float:left;padding:10px;margin:0 auto;">
+    <h1>Products</h1>
+  <button ng-click="ToNewProduct()">Edit Products</button>
+  <br/>
+  <ul ng-repeat="product in products">
+    <li>product.name  &nbsp&nbsp&nbsp&nbsp&nbsp  product.price <br/> product.details <br/>
+     <button ng-click="ToEditProduct(product.id)">Edit</button>
+      <button ng-click="DeleteProduct(product.id)">Delete</button
+  </li>
+</ul>
+</div>

@@ -44,12 +44,13 @@ module.exports.register = function(req, res) {
 //input:username and password
 //output: token is generated
 //err: if inputs are given wrong, then an error message is thrown
-
+//success: token is generated for the user, and a message appears
 module.exports.login = function(req, res) {
    User.findOne({
     username: req.body.username
   }, function(err, user) {
     if (err) throw err;
+
     if (!user) {
       res.send({ success: false, message: 'Authentication failed. User not found.' });
     } else {

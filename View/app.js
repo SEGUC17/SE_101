@@ -1,2 +1,56 @@
-//application of the front end
-angular.module('fitnessApp', ['chatController', 'checkoutController','chatSocket', 'socketService', 'btford.socket-io']);
+var fitnessApp = angular.module('fitnessApp', ['ui.router','ngRoute','chatController', 'checkoutController','chatSocket', 'socketService', 'btford.socket-io', 'adminchatController', 'adminChatsctrl']);
+//Each state url represent to the route
+//when this route is called the template provided is viewed in index.html
+fitnessApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  //checkout state : <check-out> refers to checkout component
+  var checkoutState = {
+    name: 'checkout',
+    url: '/checkout',
+    template: '/partials/checkout.html'
+  }
+  $stateProvider.state(checkOutState);
+  $urlRouterProvider.when('', '/products');
+}]);
+
+fitnessApp.config(function($routeProvider){
+
+  when('/checkout',{
+    templateUrl : '/partials/checkout.html',
+    controller : 'checkoutController'
+  })
+
+  when('/admin' , {
+    templateUrl : '/partials/adminPage.html',
+    controller : 'adminPagectrl'
+  })
+
+  when('/admin/editProducts', {
+    templateUrl : '/partials/adminEditProducts.html',
+    controller : 'editProductsctrl'
+  })
+
+  when('/admin/editPlans', {
+    templateUrl : '/partials/adminEditPlans.html',
+    controller : 'plansctrl'
+  })
+
+  when('/admin/editUsers', {
+    templateUrl : '/partials/adminEditUsers.html',
+    controller : 'editUsersctrl'
+  })
+
+  when('/admin/editSponserAds', {
+    templateUrl : '/partials/adminEditSponserAds.html',
+    controller : 'editSponserAdsctrl'
+  })
+  
+  when('/admin/createNewProduct',{
+    templateUrl : '/partials/createNewProduct.html',
+    controller : 'editProductsctrl'
+  })
+
+    when('/admin/chats',{
+    templateUrl : '/partials/adminchats.html',
+    controller : 'adminChatsctrl'
+  })
+});

@@ -12,7 +12,8 @@ password : {type:String, required:true},
 user_basket : [{type: Schema.Types.ObjectId, ref: 'Product'}], //only products the user has selected but hasnt bought yet are in this list
 user_history : [String],
 profile : {type: Schema.Types.ObjectId, ref: 'Profile'}, // the plan is in the profile 
-admin:{type:Boolean}
+admin:{type:Boolean},
+plan:{type: Schema.Types.ObjectId, ref: 'Plan'}
 } );
 UserSchema.methods.generateJwt=function() {
   var expiry = new Date();

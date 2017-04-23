@@ -1,0 +1,19 @@
+//this is the page where u can view the spnsers ads and in the same page u have three buttons add,edit, and delete which redirects to new pages which u can do these functions 
+
+<div class="adminPage" style='text-align:center' ng-controller='adminPagectrl'>
+<form name='form'>
+  <script type ="text/javascript">
+  
+    <label id="Ad_name" style='padding-left:10px'>Name</label>
+  <input ng-model="AdName" ng-change="setAdName(Ad_name)"/>
+
+    
+    <img src="befit.jpg" alt="Befit Ad" style="width:300px;height:300px;">
+  
+      
+      <label id="Ad_details" style='padding-left:10px'>Details</label>
+  <input ng-model="AdDetails" ng-change="setAdDetails(Ad_details)"/>
+    
+       <p><button ng-click="edit(ad)">Edit</button></p>
+     <p><button ng-click="add(ad)">Edit</button></p>
+    <p><button ng-click="delete(ad)">Delete</button></p>

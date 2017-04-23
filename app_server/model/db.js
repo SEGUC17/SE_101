@@ -6,8 +6,6 @@ require('./plan');
 require('./product');
 require('./profile');
 require('./sponserAd');
-require('./message');
-require('./chat');
 
 mongoose.connect(dbURI);
 
