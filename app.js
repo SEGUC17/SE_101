@@ -33,7 +33,9 @@ app.use(flash());
 mongoose.connect(DB_URI);
 require('./app_server/config/passport')(passport);
 app.use('/', index);
-
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/View/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
