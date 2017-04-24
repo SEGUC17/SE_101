@@ -39,6 +39,11 @@ fitnessApp.config(function($routeProvider){
     templateUrl : '/partials/adminEditProducts.html',
     controller : 'editProductsctrl'
   })
+ fitnessApp.config(function($httpProvider)	{	
+	//attach our auth inteceptor to the http requests
+	$httpProvider.interceptors.push('AuthInterceptor');
+});
+ 
 
   when('/admin/editPlans', {
     templateUrl : '/partials/adminEditPlans.html',
