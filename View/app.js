@@ -1,4 +1,5 @@
-var fitnessApp = angular.module('fitnessApp', ['ui.router','ngRoute','chatController', 'checkoutController','chatSocket', 'socketService', 'btford.socket-io']);
+var fitnessApp = angular.module('fitnessApp', ['ui.router','ngRoute','chatController','mainCtrl',
+ 'authService', 'checkoutController','chatSocket', 'socketService', 'btford.socket-io']);
 //Each state url represent to the route
 //when this route is called the template provided is viewed in index.html
 fitnessApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -13,6 +14,16 @@ fitnessApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvid
 }]);
 
 fitnessApp.config(function($routeProvider){
+  when('/login', {
+            templateUrl : '/partials/login.html',
+        	controller   : 'mainController',
+        	controllerAs   : 'login'
+        })
+  when('/', {
+            templateUrl : '/partials/home.html',
+            controller : 'homeCtrl',
+            controllerAs : 'home'
+        })
 
   when('/checkout',{
     templateUrl : '/partials/checkout.html',
