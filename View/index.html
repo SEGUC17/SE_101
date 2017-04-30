@@ -1,50 +1,38 @@
-//main html view
-<!doctype html>
-
-<html ng-app="fitnessApp" ng-controller="mainctrl">
+<html ng-app="fitnessApp" ng-controller="mainController as main" >
 
 <head>
   <title>Fitness Platform</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="bower_components/angular-socket-io/socket.js"></script>
-  <script src="./js/jquery-2.2.1.min.js"></script>
-  <script src="./js/andular.min.js"></script>
-  <script src="./js/angular-route.min.js"></script>
+	<!--<script src="bower_components/angular-animate/"></script>-->
+  <script src="bower_components/angular-route/angular-route.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <sciprt src="services/chatService.js"></script>
-  <sciprt src="controllers/chat.js"></script>
-  <sciprt src="controllers/adminchat.js"></script>
-
+  
   <script src="/controllers/mainCtrl.js"></script>
-  <script src="/controllers/checkout.js"></script>
-  <script src="/controllers/adminPagectrl.js"></script>
+  <!--<script src="/controllers/checkout.js"></script>-->
+  <!--<script src="/controllers/adminPagectrl.js"></script>
   <script src="/controllers/productsctrl.js"></script>
   <script src="/controllers/editProductctrl.js"></script>
-  <script src="/controllers/mainctrl.js"></script>
-  <script src="/controllers/adsctrl.js"></script>
+  <script src="/controllers/adsctrl.js"></script> 
   <script src="/controllers/editSponserAdsctrl.js"></script>
-  <script src="/controllers/editClientsctrl.js"></script>
+  <script src="/controllers/editClientsctrl.js"></script>  -->
 
-
-
-
-
-
+  
+  
   <script src="/services/authService.js"></script>
-  <script src="/services/adminPagesrv.js"></script>
+  <!--<script src="/services/adminPagesrv.js"></script>
   <script src="/services/productssrv.js"></script>
   <script src="/services/editProductsrv.js"></script>
   <script src="/services/editSponserAdssrv.js"></script>
-  <script src="/services/editClientssrv.js"></script>
-  <script src="app.js"></script>
-
+  <script src="/services/editClientssrv.js"></script>-->
+  <script src="app.routes.js"></script>
+  <script src='app.js'></script>
+  
+  
   <style>
 .jumbotron{
     background-color:#2E2D88;
@@ -87,7 +75,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/products">Home <span class="sr-only">(current)</span></a></li>
+          <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
           <li><a href="/login" >Login</a></li>
           <li><a href="/register">Register</a></li>
           <li><a href="/plans">Plans</a></li>
@@ -109,7 +97,7 @@
 
 </head>
 
-<body>
+<body >
 
   <div class="app-wrapper">
     <chat ng-show="!admin"></chat>
