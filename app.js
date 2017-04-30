@@ -31,7 +31,7 @@ app.use(function(req,res,next){
 	next();
 });
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'View')));
 app.use(session({ secret: 'secret' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
@@ -62,5 +62,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
 
