@@ -1,5 +1,6 @@
+
 var fitnessApp = angular.module('fitnessApp', ['ui.router','ngRoute','chatController','mainCtrl',
- 'authService', 'checkoutController','chatSocket', 'socketService', 'btford.socket-io']);
+ 'authService', 'checkoutController','chatSocket', 'socketService', 'btford.socket-io', 'adminchatController', 'adminChatsctrl']);
 //Each state url represent to the route
 //when this route is called the template provided is viewed in index.html
 fitnessApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -55,14 +56,18 @@ fitnessApp.config(function($routeProvider){
     templateUrl : '/partials/adminEditSponserAds.html',
     controller : 'editSponserAdsctrl'
   })
-  
+
   when('/admin/createNewProduct',{
     templateUrl : '/partials/createNewProduct.html',
     controller : 'editProductsctrl'
   })
+
+    when('/admin/chats',{
+    templateUrl : '/partials/adminchats.html',
+    controller : 'adminChatsctrl'
+  })
 });
- fitnessApp.config(function($httpProvider){	
+ fitnessApp.config(function($httpProvider){
 	//attach our auth inteceptor to the http requests
 	$httpProvider.interceptors.push('AuthInterceptor');
 });
- 
