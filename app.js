@@ -24,6 +24,12 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(function(req,res,next){
+	res.setHeader('Access-Control-Allow-Orgin','*');
+	res.setHeader('Access-Control-Allow-Method','GET,POST');
+	res.setHeader('Access-Control-Allow-Headers','X-Request-With,content-type,\Authorization');
+	next();
+});
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'secret' })); // session secret
@@ -33,7 +39,9 @@ app.use(flash());
 mongoose.connect(DB_URI);
 require('./app_server/config/passport')(passport);
 app.use('/', index);
-
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/View/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
