@@ -1,14 +1,8 @@
-angular.module('fitnessApp').
-  component('checkOut', {
-    templateUrl: 'partials/checkout.html',
-    controller: function checkoutController($http) {
-      var self = this;
-      $http.get('https://localhost:3000//products/cart').then(function(response) {
-        self.products = response.data.cart;
-        self.total=response.data.total;
-        self.plan=respnse.data.plan;
-        
-      });
-
-        }
-  });
+angular.module('checkOutCtrl',['CartInfo']).
+controller('CheckOutController',['CartInfo'], function(){
+    var vm = this;
+    var cart=checkOutService.checkOutFactory.cart;
+		vm.total=cart.total;
+    vm.products=cart.products;
+    vm.plan=cart.plan;
+	});
