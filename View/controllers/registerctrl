@@ -1,0 +1,45 @@
+angular.module('registerctrl' , ['authService'])
+.controller('homeCtrl', function(){
+		var vm = this;
+		vm.message = 'BE HEALTHY BEFIT';
+	})
+  .controller('registerctrl',['$scope','Auth','$location','$rootScope','$http',
+		function($rootScope,Auth,$location,$scope) {
+    var vm =this;
+    $rootScope.on = false;
+    $scope.heading = "Register";
+    $scope.ono=false;
+    $scope.$on=function(){
+    
+    $scope.ono=!$scope.ono;
+    
+    });
+    $scope.register = function () {
+    vm.processing = true;
+    vm.error = '';
+    
+    $http({
+    method: "post",
+    url: "/registerctrl",
+    data: { 
+          
+          name : $scope.name ,
+           username :$scope.username , 
+           password : $scope.password ,
+          
+          
+            
+         });
+         .then(function (res) {
+         alert("register");
+         },
+         function(err) {
+         alert.("failed");
+         });
+         
+         }
+         }
+         );
+    
+    
+    
