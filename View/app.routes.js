@@ -33,6 +33,11 @@ angular.module('app.routes', ['ngRoute'])
           templateUrl : '/partials/adminPage.html',
           controller : 'adminctrl'
         })
+    
+        .when('/admin/editPlans', {
+          templateUrl : '/partials/editPlans.html',
+          controller : 'adminCtrl'
+        })
 
         //page with all plans to edit,delete or add
         // when('/admin/editPlans', {
