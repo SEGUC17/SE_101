@@ -1,5 +1,5 @@
-angular.module('adminCtrl' , [])
-.controller('adminCtrl' , function ($scope,$location,adminsrv,Auth){
+angular.module('adminCtrl' , ['authService'])
+.controller('adminCtrl' , function ($scope,$location,adminsrv,Auth,AuthToken){
   $scope.EditProducts = function(){
       $location.url('/admin/editProducts');
   };
@@ -25,8 +25,15 @@ angular.module('adminCtrl' , [])
   this.productDetails = '';
   this.productPrice = '';
 
-  productssrv.getProductsList().success(function(productsList){
-    $scope.products=productsList;
+    $scope.products=adminsrv.getList();
+    $scope.plans = adminsrv.getList2();
+
+  adminsrv.getProductsList().then(function(response){
+    adminsrv.setList(response.data);
+  })
+
+  adminsrv.getPlansList().then(function(response){
+    adminsrv.setList2(response.data);
   })
   // send to service to create new product
   $scope.CreateNewProduct =function(){
@@ -36,7 +43,7 @@ angular.module('adminCtrl' , [])
                   //    'id' :productDetails,
                       'price':this.productPrice
                   }
-    editproductssrv.makeProduct(data);
+    editadminsrv.makeProduct(data);
   }
   // send to service details to edit product
   $scope.EditProduct = function(){
@@ -46,11 +53,17 @@ angular.module('adminCtrl' , [])
                       'id' :this.productDetails,
                       'price':this.productPrice
                   }
-    editproductssrv.editProduct(data);
+    editadminsrv.editProduct(data);
   }
   // send product id to service to delete product
-  $scope.DeleteProduct = function(data){
-    deleteProduct(data);
+  $scope.DeleteProduct = function(response){
+    var id = Auth.getID();
+    console.log(id);
+    var data = {
+      'product.id' : response,
+      'user._id' : id
+    }
+    adminsrv.deleteProduct(data);
   }
   // render create product page
   $scope.ToNewProduct = function(){
@@ -85,12 +98,32 @@ angular.module('adminCtrl' , [])
 
 
 .factory('adminsrv', function($http){
-  fitnessApp('editproductssrv', function($http){
+  var list = [];
+  var list2 = [];
     return{
 
+      setList : function(value) {
+        this.list=value;
+      },
+
+      getList : function() {
+        return this.list;
+        },
   //get a list of json products
       getProductsList : function(){
         return $http.get('/products');
+      },
+
+      setList2 : function(value) {
+        this.list2=value;
+      },
+
+      getList2 : function() {
+        return this.list2;
+        },
+  //get a list of json products
+      getPlansList : function(){
+        return $http.get('/plans');
       },
 
   //send product details to make new produce
@@ -111,5 +144,3 @@ angular.module('adminCtrl' , [])
 
     };
   });
-
-});
