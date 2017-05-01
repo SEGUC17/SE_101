@@ -61,10 +61,10 @@ module.exports.login = function(req, res) {
         var token =user.generateJwt();
         if(user.admin)
         {
-            res.json({ success: true, token: 'JWT ' + token , admin : true});
+            res.json({ success: true, token: 'JWT ' + token , admin : true, id : user.id});
         }
         else
-        res.json({ success: true, token: 'JWT ' + token, admin:false });
+        res.json({ success: true, token: 'JWT ' + token, admin:false , id : user.id});
 
       }
 
