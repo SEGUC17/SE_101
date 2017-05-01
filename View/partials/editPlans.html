@@ -1,0 +1,13 @@
+<div class="plans" style='text-align:center' ng-controller='adminCtrl' ng-init = getplans()>
+
+
+<h1>plans</h1>
+
+<div style="float:left;padding:10px;margin:0 auto;" ng-repeat="plan in plans">
+    <p>Name: {{plan.name}}  &nbsp&nbsp&nbsp&nbsp&nbsp  Price: {{plan.price}} <br><br/> Details: {{plan.details}} </p>
+     <button ng-click="ToEditplan(plan.id)">Edit</button>
+      <button ng-click="Deleteplan(plan.id)">Delete</button>
+
+</div>
+
+<button ng-click="ToNewplan()">Create New plans</button>
