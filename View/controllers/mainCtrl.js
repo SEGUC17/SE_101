@@ -1,110 +1,59 @@
-angular.module('authService', [])
+angular.module('mainCtrl', ['authService'])
 
-//=============================================================================
-// auth factory to login and get information
-// inject $http for communicating with the API
-// inject $q to return promise objects
-// inject AuthToken to manage tokens
-//=============================================================================
-.factory('Auth', function($http,$q,$window, AuthToken){
-
-	//	create auth factory object
-	var authFactory = {};
-
-	//log a user in
-	authFactory.login = function(username, password)	{
-
-	// return the promise object and its data
-	return $http.post('/login',{
-		username: username,
-		password: password
+	.controller('homeCtrl', function(){
+		var vm = this;
+		vm.message = 'BE HEALTHY BEFIT';
 	})
-		.then( function(data)	{
-			AuthToken.setToken(data); //and User name
-		return data;
+
+	.controller('mainController',['$scope','Auth','$location','$rootScope',
+		function($rootScope,Auth,$location,$scope) {
+		var vm = this;
+		//get info if a person is logged in
+		vm.loggedIn = Auth.isLoggedIn();
+
+		//check to see if a user is logged in on every request
+		$rootScope.$on('$routeChangeStart', function () {
+			vm.loggedIn = Auth.isLoggedIn();
 		});
-	};
 
-	// log a user out by clearing the token
-	authFactory.logout = function()	{
-	//clear the token
-	AuthToken.setToken();
-	};
+		//function to handle login form
+		vm.doLogin = function () {
+			//processing Icon
+			vm.processing = true;
+			// clear error handling
+			vm.error = '';
 
-	//check if a user is logged in
-	//checks if there is a local token
-	authFactory.isLoggedIn = function()	{
-		if (AuthToken.getToken() != null)
-			return true;
-		else
-			return false;
-	};
+			// call the Auth.login() function
+		Auth.login(vm.loginData.username, vm.loginData.password)
+			.then(function (response) {
+					vm.processing = false;
+					console.log(response.data);
+				if (response.data.success) {
+					console.log("log log log");
+					if(response.data.admin){
+						//if admin successfull login redirect to admin page
+						$location.path('/admin');
+					}
+					else {
+						//if a user successfully logs in, redirect to homepage page
+						$location.path('/home');
+					}
 
-	authFactory.getID = function(){
-		if (AuthToken.getToken() != null)
-			return AuthToken.getToken().data.id
-	};
-	return authFactory;
+					//this.user = 'name:unchanged';
+					// Auth.getUser()
+					// 	.then(function(response) {
+					// 		$scope.name = response.data.name;
+					// 	 })
+					}
+				else vm.error = response.data.message;
+			});
+		};
 
-})
-
-//=============================================================================
-//	factory for handling tokens
-//	inject $window to store token client-side
-//=============================================================================
-.factory('AuthToken', function($window)	{
-
-	var authTokenFactory = {};
-
-	//get the token out of local storage
-	authTokenFactory.getToken = function()	{
-		var token =$window.localStorage.getItem('token');
-		if( token != 'undefined') return token;
-		else return null;
-	};
-
-	// function to get token or clear token
-	// if a token is passed, set the token
-	// if there is no token, clear it from local storage
-	authTokenFactory.setToken = function (data)	{
-		if(data){
-			$window.localStorage.setItem('token',data.token);
-			}
-		else {
-			$window.localStorage.removeItem('token');
-		}};
-
-	return authTokenFactory;
-})
-
-//=============================================================================
-// application configuration to integrate token into requests
-//=============================================================================
-.factory('AuthInterceptor', function($q,$location,AuthToken)	{
-
-	var interceptorFactory = {};
-
-	//	 this will hapen on all HTTP requests
-	interceptorFactory.request = function(config)	{
-
-		//	grab the token
-		var token = AuthToken.getToken();
-
-		//if the token exists, add it to the header as x-access-token
-		if(token)
-			config.headers['x-access-token'] = token;
-
-		return config;
-	};
-
-	//	happens on response errors
-	interceptorFactory.responseError = function(response)	{
-		//	if our server returns a 403 forbidden response
-		if(response.status == 403)
+		//function to handle loggin out
+		vm.doLogout = function () {
+			Auth.logout();
+			//reset all user info
+			vm.user = {};
 			$location.path('/login');
-		//return the errors from the server as a promise
-		return $q.reject(response);
-	};
-
-	return interceptorFactory;
-});
+		}
+	}]);
