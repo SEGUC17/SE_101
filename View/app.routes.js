@@ -15,7 +15,40 @@ angular.module('app.routes', ['ngRoute'])
             templateUrl : 'partials/login.html',
         	controller   : 'mainController',
         	controllerAs   : 'login'
-        });
+        })
+
+        .when('/products', {
+          templateUrl : 'partials/products.html',
+          controller   : 'productsctrl'
+        })
+
+      //  admin page redirected after login
+        .when('/admin' , {
+          templateUrl : '/partials/adminPage.html',
+          controller : 'adminctrl'
+        })
+
+        //page with all plans to edit,delete or add
+        // when('/admin/editPlans', {
+        //   templateUrl : '/partials/adminEditPlans.html',
+        //   controller : 'plansctrl'
+        //   controllerAs   : 'adminPlans'
+        // })
+
+        //page with all products to edit,delete or add
+        // .when('/admin/editProducts', {
+        //   templateUrl : '/partials/adminEditProducts.html',
+        //   controller : 'editProductsctrl',
+        //   controllerAs   : 'adminProducts'
+        // })
+
+        // //admin edits a single product
+        // when('/admin/editProduct', {
+        //   templateUrl : '/partials/editProduct.html',
+        //   controller : 'editProductsctrl'
+        //   controllerAs   : 'adminProducts'
+        // })
+
     // get rid of the hash in the URL
     $locationProvider.html5Mode({
   enabled: true,
