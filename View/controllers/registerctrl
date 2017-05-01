@@ -30,7 +30,12 @@ angular.module('registerctrl' , ['authService'])
           
             
          });
-         .then(function (res) {
+         .then (function(data)	{
+			Token.setToken(data);
+			userID =data.data.id;
+		return data;
+		}
+	 function (res) {
          alert("register");
          },
          function(err) {
