@@ -10,3 +10,5 @@ fitnessApp.controller('editClientsctrl', fuction($scope, editClientssrv){
     editClientssrv.deleteClients(data);
   }
 });
+
+
