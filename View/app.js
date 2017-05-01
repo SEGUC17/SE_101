@@ -4,7 +4,8 @@ angular.module('fitnessApp', [
 	'authService',
 	'mainCtrl',
 	'adminCtrl',
-	'productsctrl'
+	'productsctrl',
+	'plansctrl'
 ]).config(function($httpProvider)	{
 	//attach our auth inteceptor to the http requests
 	$httpProvider.interceptors.push('AuthInterceptor');
