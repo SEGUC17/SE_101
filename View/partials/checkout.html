@@ -1,20 +1,20 @@
 <h1>CheckOut</h1>
 <h3>Invoice</h3>
-<div class="app-checkout" ng-repeat="product in $ctrl.products">
+<div class="app-checkout" ng-repeat="product in checkout.products">
 	<h2>{{ product.name }}+" For  "+{{product.price}}</h2>
 </div>	
-    <h1>{{plan.name}}+"Plan For 20 $"</h1>
-    <h1>The Total Price of your products is {{$ctrl.total}}</h1>
+    <h1>{{checkout.plan.name}}+"Plan For 20 $"</h1>
+    <h1>The Total Price of your products is {{checkout.total}}</h1>
     <form action="/charge" method="POST">
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_okJbbMoNNwp6KGxxpENBUDFO"
-    data-amount={{$ctrl.total}};
+    data-amount={{checkout.total}};
     data-name="Stylus Fitness"
-    data-amount="{{$ctrl.total}}"
+    data-amount="{{checkout.total}}"
     data-description="Widget"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
     data-locale="auto">
   </script>
-  <input type="hidden" name="charge" value ="{{$ctrl.total}"> 
+  <input type="hidden" name="charge" value ="{{checkout.total}"> 
 </form>
