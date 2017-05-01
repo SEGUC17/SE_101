@@ -5,8 +5,8 @@
 
 <div style="float:left;padding:10px;margin:0 auto;" ng-repeat="product in products">
     <p>Name: {{product.name}}  &nbsp&nbsp&nbsp&nbsp&nbsp  Price: {{product.price}} <br><br/> Details: {{product.details}} </p>
-     <button ng-click="ToEditProduct(product.id)">Edit</button>
-      <button ng-click="DeleteProduct(product.id)">Delete</button>
+     <button ng-click="ToEditProduct(product._id)">Edit</button>
+      <button ng-click="DeleteProduct(product._id)">Delete</button>
 
 </div>
 
