@@ -40,10 +40,7 @@ angular.module('authService', [])
 			return false;
 	};
 
-	authFactory.getID = function(){
-		if (AuthToken.getToken() != null)
-			return AuthToken.getToken().data.id
-	};
+	
 	return authFactory;
 
 })
