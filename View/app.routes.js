@@ -9,6 +9,9 @@ angular.module('app.routes', ['ngRoute'])
             controller : 'homeCtrl',
             controllerAs : 'home'
         })
+        .when('/about',{
+          templateUrl : 'partials/about.html'
+        })
 
         //login page
         .when('/login', {
