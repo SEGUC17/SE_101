@@ -1,18 +1,13 @@
-<div class="editProducts" style='text-align:center' ng-controller='productsctrl'>
-<form name='form'>
-  <script type ="text/javascript">
+<div class="products" style='text-align:center' ng-controller='adminCtrl' ng-init = getProducts()>
 
 
-<div style="float:left;padding:10px;margin:0 auto;">
-    <h1>Products</h1>
-  <button ng-click="ToNewProduct()">Edit Products</button>
-  <br/>
-  <ul ng-repeat="product in products">
-    <li>product.name  &nbsp&nbsp&nbsp&nbsp&nbsp  product.price <br/> product.details <br/>
+<h1>Products</h1>
+
+<div style="float:left;padding:10px;margin:0 auto;" ng-repeat="product in products">
+    <p>Name: {{product.name}}  &nbsp&nbsp&nbsp&nbsp&nbsp  Price: {{product.price}} <br><br/> Details: {{product.details}} </p>
      <button ng-click="ToEditProduct(product.id)">Edit</button>
-      <button ng-click="DeleteProduct(product.id)">Delete</button
-  </li>
-</ul>
+      <button ng-click="DeleteProduct(product.id)">Delete</button>
+
 </div>
 
-    <!--  iterate over a list of products to show product details with delete and edit button-->
+<button ng-click="ToNewProduct()">Create New Products</button>
