@@ -21,6 +21,12 @@ angular.module('app.routes', ['ngRoute'])
           templateUrl : 'partials/products.html',
           controller   : 'productsctrl'
         })
+    
+          .when('/plans', {
+          templateUrl : 'partials/plans.html',
+          controller   : 'plansctrl'
+        })
+
 
       //  admin page redirected after login
         .when('/admin' , {
