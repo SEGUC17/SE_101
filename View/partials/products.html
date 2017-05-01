@@ -1,0 +1,11 @@
+<div class="products" style='text-align:center' ng-controller='productsctrl' ng-init = getProducts()>
+
+
+<h1>Products</h1>
+
+<div style="float:left;padding:10px;margin:0 auto;" ng-repeat="product in products">
+    <p>{{product.name}}  &nbsp&nbsp&nbsp&nbsp&nbsp  {{product.price}} <br><br/> {{product.details}} </p>
+     
+</div>
+<br>  <br/>
+<button ng-click="ToNewProduct()">Create New Products</button>
