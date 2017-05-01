@@ -59,7 +59,12 @@ module.exports.login = function(req, res) {
         res.send({ success: false, message: 'Authentication failed. Password is wrong.' });
       }else{
         var token =user.generateJwt();
-        res.json({ success: true, token: 'JWT ' + token });
+        if(user.admin)
+        {
+            res.json({ success: true, token: 'JWT ' + token , admin : true});
+        }
+        else
+        res.json({ success: true, token: 'JWT ' + token, admin:false });
 
       }
 
