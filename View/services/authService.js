@@ -10,7 +10,7 @@ angular.module('authService', [])
 
 	//	create auth factory object
 	var authFactory = {};
-
+	var userID ;
 	//log a user in
 	authFactory.login = function(username, password)	{
 
@@ -21,6 +21,7 @@ angular.module('authService', [])
 	})
 		.then( function(data)	{
 			AuthToken.setToken(data); //and User name
+			userID =data.data.id;
 		return data;
 		});
 	};
@@ -40,6 +41,10 @@ angular.module('authService', [])
 			return false;
 	};
 
+	authFactory.getID = function(){
+		if (AuthToken.getToken() != null)
+			return userID;
+	};
 	
 	return authFactory;
 
