@@ -24,7 +24,9 @@ angular.module('adminCtrl' , ['authService'])
   this.productId = '';
   this.productDetails = '';
   this.productPrice = '';
-
+  this.planName = '';
+  this.planDetails = '';
+  this.planId = '';
     $scope.products=adminsrv.getList();
     $scope.plans = adminsrv.getList2();
 
@@ -93,7 +95,15 @@ angular.module('adminCtrl' , ['authService'])
   $scope.setProductDetails=function(detaisl){
     this.productDetails=details;
   }
+  $scope.ToEditPlan = function(data){
 
+  }
+  $scope.Deleteplan = function(data){
+
+  }
+  $scope.ToNewplan = function(){
+
+  }
 })
 
 
