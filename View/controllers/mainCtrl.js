@@ -25,19 +25,27 @@ angular.module('mainCtrl', ['authService'])
 
 			// call the Auth.login() function
 		Auth.login(vm.loginData.username, vm.loginData.password)
-			.success(function (data) {
+			.then(function (response) {
 					vm.processing = false;
-
-				if (data.success) {
-					//if a user successfully logs in, redirect to users page
-					$location.path('/profile');
-					//this.user = 'name:unchanged';
-					Auth.getUser()
-						.then(function(data) {
-							$scope.name = data.name;
-						 })
+					console.log(response.data);
+				if (response.data.success) {
+					console.log("log log log");
+					if(response.data.admin){
+						//if admin successfull login redirect to admin page
+						$location.path('/admin');
 					}
-				else vm.error = data.message;
+					else {
+						//if a user successfully logs in, redirect to homepage page
+						$location.path('/home');
+					}
+
+					//this.user = 'name:unchanged';
+					// Auth.getUser()
+					// 	.then(function(response) {
+					// 		$scope.name = response.data.name;
+					// 	 })
+					}
+				else vm.error = response.data.message;
 			});
 		};
 
@@ -49,13 +57,3 @@ angular.module('mainCtrl', ['authService'])
 			$location.path('/login');
 		}
 	}]);
-
-
-
-
-
-
-
-
-
-
