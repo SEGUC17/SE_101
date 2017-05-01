@@ -4,6 +4,9 @@ fitnessApp.controller('editSponserAdsctrl', fuction($scope, editSponserAdssrv){
   var sponserAdName;
   var sponserAdId;
   var sponserAdDetails;
+   editSponserAdssrv.getSponserAdsList().success(function(SponserAdsList){
+    $scope.SponserAds=SponserAdsList;
+  });
 
   $scope.CreateNewSponserAd =function(data){
     var data{
