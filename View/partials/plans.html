@@ -1,0 +1,10 @@
+<div class="plans" style='text-align:center' ng-controller='plansctrl' ng-init = getPlans()>
+
+
+<h1>Products</h1>
+
+<div style="float:left;padding:10px;margin:0 auto;" ng-repeat="plan in plans">
+    <p> <br><br/> Name: {{plan.name}}  <br><br/> Details: {{plan.details}} <br><br/> </p>
+
+</div>
+<br><br/>
