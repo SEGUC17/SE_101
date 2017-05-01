@@ -4,8 +4,6 @@
 <h1>Products</h1>
 
 <div style="float:left;padding:10px;margin:0 auto;" ng-repeat="product in products">
-    <p>{{product.name}}  &nbsp&nbsp&nbsp&nbsp&nbsp  {{product.price}} <br><br/> {{product.details}} </p>
+    <p>Name: {{product.name}}  &nbsp&nbsp&nbsp&nbsp&nbsp  Price: {{product.price}} <br><br/> Details: {{product.details}} </p>
      
 </div>
-
-<button ng-click="ToNewProduct()">Create New Products</button>
