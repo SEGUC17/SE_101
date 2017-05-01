@@ -1,17 +1,17 @@
 angular.module('authService', [])
 
 //=============================================================================
-// auth factory to login and get information 
+// auth factory to login and get information
 // inject $http for communicating with the API
 // inject $q to return promise objects
 // inject AuthToken to manage tokens
 //=============================================================================
 .factory('Auth', function($http,$q,$window, AuthToken){
-	
+
 	//	create auth factory object
 	var authFactory = {};
 
-	//log a user in 
+	//log a user in
 	authFactory.login = function(username, password)	{
 
 	// return the promise object and its data
@@ -19,16 +19,9 @@ angular.module('authService', [])
 		username: username,
 		password: password
 	})
-		.then(function (response){
-			console.log(response);
-			if(response.data.success==true){
-				AuthToken.setToken(response.data.token); //and User name
-		return response;
-
-			}else{
-				return response;
-			}
-			
+		.then( function(data)	{
+			AuthToken.setToken(data); //and User name
+		return data;
 		});
 	};
 
@@ -45,6 +38,11 @@ angular.module('authService', [])
 			return true;
 		else
 			return false;
+	};
+
+	authFactory.getID = function(){
+		if (AuthToken.getToken() != null)
+			return AuthToken.getToken().data.id
 	};
 	return authFactory;
 
@@ -110,9 +108,3 @@ angular.module('authService', [])
 
 	return interceptorFactory;
 });
-
-
-
-
-
-
