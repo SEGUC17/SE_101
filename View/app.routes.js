@@ -31,7 +31,7 @@ angular.module('app.routes', ['ngRoute'])
       //  admin page redirected after login
         .when('/admin' , {
           templateUrl : '/partials/adminPage.html',
-          controller : 'adminctrl'
+          controller : 'adminCtrl'
         })
     
         .when('/admin/editPlans', {
