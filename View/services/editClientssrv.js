@@ -17,10 +17,6 @@ fitnessApp('editClientssrv', function($http){
         return $http.get('/viewUsers');
       },
 
-   
-    getClientsList : function(){
-      return $http.get('/viewUsers');
-    },
     
         deleteClients : function(data){
       $http.delete('/deleteUsers',data);
