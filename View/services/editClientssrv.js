@@ -13,7 +13,7 @@ fitnessApp('editClientssrv', function($http){
         return this.list;
         },
   //get a list of json clients
-      getUserssList : function(){
+      getUsersList : function(){
         return $http.get('/viewUsers');
       },
 
